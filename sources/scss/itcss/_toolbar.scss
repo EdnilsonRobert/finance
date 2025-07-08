@@ -1,0 +1,33 @@
+/** ============================================================================
+    Group: Objects
+    File: Toolbar
+============================================================================= */
+
+@use './containers';
+
+.toolbar {
+  @extend %container-basic;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-brand svg {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.brand-path {
+  stroke: var(--spring-3);
+}
+
+.toolbar-title {
+  margin-left: var(--space-sm);
+}
+
+/* END OF FILE ============================================================== */

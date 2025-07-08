@@ -1,0 +1,32 @@
+/** ============================================================================
+    Group: Components
+    File: Graphics
+============================================================================= */
+
+// GRAPHIC CAPTIONS --------------------
+.graphic-captions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space);
+}
+
+.graphic-caption {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.graphic-caption-bullet {
+  width: var(--space-xs);
+  height: var(--space-xs);
+}
+
+.graphic-caption-label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-lg);
+}
+
+/* END OF FILE ============================================================== */

@@ -1,0 +1,42 @@
+/** ============================================================================
+    Group: Components
+    File: Cards
+============================================================================= */
+
+@use './containers';
+
+.card {
+  @extend %container-styled;
+  padding: var(--space-sm);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title,
+.card-label {
+  font-size: 110%;
+}
+
+// .card-content {}
+
+.card-value {
+  font-size: 250%;
+  text-align: right;
+  color: var(--spring-3);
+}
+
+.card-value.text-negative {
+  color: var(--red-3);
+}
+
+.card-footer {
+  margin-top: var(--space-xs);
+  padding-top: var(--space-xs);
+  border-top: .1rem solid var(--ui-color-5);
+}
+
+/* END OF FILE ============================================================== */

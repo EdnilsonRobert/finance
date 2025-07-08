@@ -1,0 +1,81 @@
+/** ============================================================================
+    Group: Base
+    File: Navigation
+============================================================================= */
+
+@use './containers';
+
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: var(--space);
+}
+
+.navigation.navigation-home {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  border-radius: var(--corner-sm);
+  border: 1px solid var(--ui-color-5);
+  background-color: var(--ui-color-025);
+  box-shadow: 0 .3rem .3rem var(--ui-color-7);
+}
+
+// BUTTONS ---------------------------------------------------------------------
+.button-square {
+  @extend %container-styled;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 24rem;
+  height: 24rem;
+  padding: var(--space);
+  color: var(--ui-color-2);
+  transition: all 100ms linear;
+
+  svg {
+    margin-bottom: var(--space);
+  }
+
+  &:hover {
+    color: var(--ui-color-1);
+    transform: scale(1.1);
+  }
+}
+
+// LINKS ---------------------------------------------------------------------
+.menu-link {
+  display: flex;
+  align-items: center;
+  height: 4.8rem;
+  padding: 0 var(--space-sm);
+  border-radius: var(--space-xs);
+  color: var(--ui-color-3);
+  transition: background-color 100ms linear;
+
+  svg {
+    --icon-size: 3.2rem;
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  .link-label {
+    margin-left: var(--space-sm);
+  }
+
+  &.link-active, &:hover {
+    background-color: var(--ui-color-6);
+    color: var(--ui-color-1);
+  }
+}
+
+.anchor {
+  color: var(--spring-3);
+
+  &:hover {
+    color: var(--spring-5);
+  }
+}
+
+/* END OF FILE ============================================================== */

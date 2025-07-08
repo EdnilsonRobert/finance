@@ -1,0 +1,15 @@
+{
+  "name": "finance",
+  "version": "1.0.0",
+  "description": "Controle de Finanças",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch --style=compressed sources/scss:resources/css",
+    "scss": "sass --style=compressed sources/scss:resources/css"
+  },
+  "author": "EdnilsonRobert",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.89.2"
+  }
+}

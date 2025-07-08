@@ -1,0 +1,37 @@
+/** ============================================================================
+    Group: Components
+    File: Wireframe
+============================================================================= */
+
+@use './functions';
+@use './containers';
+
+.page:not(.page-home) {
+  padding: var(--space-sm);
+}
+
+.page.page-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 100dvh;
+  padding: var(--space);
+  background: transparent functions.image('banner-home.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.main-content-home {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  @extend %container-basic;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* END OF FILE ============================================================== */

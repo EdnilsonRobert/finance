@@ -1,2 +1,5 @@
 # finance
-Controle de finanças construído com JS Vanilla
+
+## Aplicação para controle de finanças
+
+> Controle de finanças construído com JS Vanilla

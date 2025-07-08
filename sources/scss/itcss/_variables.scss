@@ -1,0 +1,232 @@
+/** ============================================================================
+    Group: Settings
+    File: Variables
+============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100..900&display=swap');
+
+// VARIABLES -------------------------------------------------------------------
+:root {
+  // SPACING -------------------------------------------------------------------
+  --space: 2.4rem;
+  --space-xs: calc(var(--space) / 4);
+  --space-sm: calc(var(--space) / 2);
+  --space-md: calc(var(--space) * 2);
+  --space-lg: calc(var(--space) * 2.5);
+  --space-xl: calc(var(--space) * 3);
+
+  // TYPOGRAPHY ----------------------------------------------------------------
+  // FONT WEIGHT -----------------------
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // FONT SIZE -------------------------
+  --font-size-xs: 1.2rem;
+  --font-size-sm: 1.4rem;
+  --font-size-rg: 1.6rem;
+  --font-size-lg: 2.4rem;
+  --font-size-xl: 3.2rem;
+
+  // FONT FAMILY -----------------------
+  --font-family-sans: 'Oxygen', sans-serif;
+  --font-family-mono: 'Oxygen Mono', monospace;
+  --font-family-display: 'Libre Franklin', sans-serif;
+
+  // LINE HEIGHT -----------------------
+  --line-height-sm: 1;
+  --line-height-md: 1.2;
+  --line-height-rg: 1.5;
+  --line-height-lg: 2;
+
+  // CORNERS -------------------------------------------------------------------
+  --corner-xs: .3rem;
+  --corner-sm: .6rem;
+  --corner-md: .9rem;
+  --corner-lg: 1.2rem;
+
+  // COLOR PALETTE -------------------------------------------------------------
+  /* ---------------------------------------------------------------------------
+  --ui-color:    hsl(210, 29%, 29%); | #354a5f | rgb(53, 74, 95)
+  --red:         hsl(6, 84%, 48%);   | #e12814 | rgb(225, 40, 20)
+  --orange:      hsl(34, 84%, 48%);  | #e18814 | rgb(225, 136, 20)
+  --gold:        hsl(48, 84%, 48%);  | #e1b814 | rgb(225, 184, 20)
+  --yellow:      hsl(56, 84%, 48%);  | #e1d414 | rgb(225, 212, 20)
+  --lime:        hsl(82, 84%, 48%);  | #96e114 | rgb(150, 225, 20)
+  --green:       hsl(135, 84%, 36%); | #0fa935 | rgb(15, 169, 53)
+  --spring:      hsl(135, 84%, 48%); | #14e147 | rgb(20, 225, 71)
+  --aqua:        hsl(165, 84%, 48%); | #14e1ae | rgb(20, 225, 174)
+  --teal:        hsl(175, 84%, 36%); | #0fa99c | rgb(15, 169, 156)
+  --cyan:        hsl(192, 84%, 48%); | #14b8e1 | rgb(20, 184, 225)
+  --blue:        hsl(210, 84%, 48%); | #147ae1 | rgb(20, 122, 225)
+  --purple:      hsl(268, 84%, 42%); | #6511c5 | rgb(101, 17, 197)
+  --magenta:     hsl(325, 84%, 48%); | #e1148c | rgb(225, 20, 140)
+  --pink:        hsl(340, 72%, 72%); | #eb84a6 | rgb(235, 132, 166)
+  --brown:       hsl(12, 72%, 36%);  | #9e341a | rgb(158, 52, 26)
+  --gray:        hsl(6, 0%, 48%);    | #7a7a7a | rgb(122, 122, 122)
+
+  --white:       hsl(0, 0%, 95%);    | #f1f1f1 | rgb(241, 241, 241)
+  --gray-light:  hsl(0, 0%, 82%);    | #d2d2d2 | rgb(210, 210, 210)
+  --gray-medium: hsl(0, 0%, 53%);    | #868686 | rgb(134, 134, 134)
+  --gray-dark:   hsl(0, 0%, 26%);    | #424242 | rgb(66, 66, 66)
+  --black:       hsl(0, 0%, 9%);     | #171717 | rgb(23, 23, 23)
+  --------------------------------------------------------------------------- */
+
+  --ui-color: hsl(210, 29%, 29%);
+  --red: hsl(6, 84%, 48%);
+  --gold: hsl(48, 84%, 48%);
+  --lime: hsl(82, 84%, 48%);
+  --spring: hsl(135, 84%, 48%);
+  --aqua: hsl(165, 84%, 48%);
+  --blue: hsl(210, 84%, 48%);
+  --purple: hsl(268, 84%, 42%);
+  --magenta: hsl(325, 84%, 48%);
+  --pink: hsl(340, 72%, 72%);
+  --brown: hsl(12, 72%, 36%);
+
+  --ui-color-075: hsla(210, 29%, 29%, 75%);
+  --ui-color-050: hsla(210, 29%, 29%, 50%);
+  --ui-color-025: hsla(210, 29%, 29%, 25%);
+  --ui-color-0: hsl(210, 11%, 93%);
+  --ui-color-1: hsl(210, 11%, 86%);
+  --ui-color-2: hsl(210, 12%, 72%);
+  --ui-color-3: hsl(210, 12%, 57%);
+  --ui-color-4: hsl(210, 15%, 43%);
+  --ui-color-5: hsl(210, 29%, 29%);
+  --ui-color-6: hsl(210, 29%, 23%);
+  --ui-color-7: hsl(210, 29%, 19%);
+  --ui-color-8: hsl(210, 30%, 15%);
+  --ui-color-9: hsl(210, 30%, 10%);
+
+  --red-3: hsl(6, 77%, 69%);
+  --red-4: hsl(6, 77%, 58%);
+
+  --gold-3: hsl(48, 77%, 69%);
+  --gold-4: hsl(48, 77%, 58%);
+
+  --lime-3: hsl(84, 77%, 69%);
+  --lime-4: hsl(84, 77%, 58%);
+
+  --spring-3: hsl(135, 77%, 69%);
+  --spring-4: hsl(135, 77%, 58%);
+
+  --aqua-3: hsl(165, 77%, 69%);
+  --aqua-4: hsl(165, 77%, 58%);
+
+  --blue-3: hsl(210, 77%, 69%);
+  --blue-4: hsl(210, 77%, 58%);
+
+  --purple-3: hsl(268, 61%, 65%);
+  --purple-4: hsl(268, 61%, 54%);
+
+  --magenta-3: hsl(325, 77%, 69%);
+  --magenta-4: hsl(325, 77%, 58%);
+
+  --pink-3: hsl(340, 72%, 83%);
+  --pink-4: hsl(340, 72%, 77%);
+
+  --brown-3: hsl(12, 41%, 62%);
+  --brown-4: hsl(12, 42%, 49%);
+
+  // COLOR SCHEME --------------------------------------------------------------
+  --main-background-color: var(--ui-color-9);
+  --main-font-color: var(--ui-color-1);
+}
+
+/*
+--red-0: hsl(9, 78%, 95%);
+--red-1: hsl(6, 77%, 90%);
+--red-2: hsl(6, 77%, 79%);
+--red-5: hsl(6, 84%, 48%);
+--red-6: hsl(6, 84%, 38%);
+--red-7: hsl(6, 84%, 31%);
+--red-8: hsl(6, 84%, 24%);
+--red-9: hsl(6, 84%, 17%);
+
+--gold-0: hsl(48, 78%, 95%);
+--gold-1: hsl(48, 77%, 90%);
+--gold-2: hsl(48, 77%, 79%);
+--gold-5: hsl(48, 84%, 48%);
+--gold-6: hsl(48, 84%, 38%);
+--gold-7: hsl(48, 84%, 31%);
+--gold-8: hsl(48, 84%, 24%);
+--gold-9: hsl(48, 84%, 17%);
+
+--lime-0: hsl(84, 78%, 95%);
+--lime-1: hsl(84, 77%, 90%);
+--lime-2: hsl(84, 77%, 79%);
+--lime-5: hsl(84, 84%, 48%);
+--lime-6: hsl(84, 84%, 38%);
+--lime-7: hsl(84, 84%, 31%);
+--lime-8: hsl(84, 84%, 24%);
+--lime-9: hsl(84, 84%, 17%);
+
+--spring-0: hsl(135, 78%, 95%);
+--spring-1: hsl(135, 77%, 90%);
+--spring-2: hsl(135, 77%, 79%);
+--spring-5: hsl(135, 84%, 48%);
+--spring-6: hsl(135, 84%, 38%);
+--spring-7: hsl(135, 84%, 31%);
+--spring-8: hsl(135, 84%, 24%);
+--spring-9: hsl(135, 84%, 17%);
+
+--aqua-0: hsl(165, 78%, 95%);
+--aqua-1: hsl(165, 77%, 90%);
+--aqua-2: hsl(165, 77%, 79%);
+--aqua-5: hsl(165, 84%, 48%);
+--aqua-6: hsl(165, 84%, 38%);
+--aqua-7: hsl(165, 84%, 31%);
+--aqua-8: hsl(165, 84%, 24%);
+--aqua-9: hsl(165, 84%, 17%);
+
+--blue-0: hsl(210, 78%, 95%);
+--blue-1: hsl(210, 77%, 90%);
+--blue-2: hsl(210, 77%, 79%);
+--blue-5: hsl(210, 84%, 48%);
+--blue-6: hsl(210, 84%, 38%);
+--blue-7: hsl(210, 84%, 31%);
+--blue-8: hsl(210, 84%, 24%);
+--blue-9: hsl(210, 84%, 17%);
+
+--purple-0: hsl(268, 60%, 94%);
+--purple-1: hsl(268, 60%, 88%);
+--purple-2: hsl(268, 61%, 77%);
+--purple-5: hsl(268, 84%, 42%);
+--purple-6: hsl(268, 84%, 34%);
+--purple-7: hsl(268, 84%, 27%);
+--purple-8: hsl(268, 84%, 21%);
+--purple-9: hsl(268, 84%, 15%);
+
+--magenta-0: hsl(325, 78%, 95%);
+--magenta-1: hsl(325, 77%, 90%);
+--magenta-2: hsl(325, 77%, 79%);
+--magenta-5: hsl(325, 84%, 48%);
+--magenta-6: hsl(325, 84%, 38%);
+--magenta-7: hsl(325, 84%, 31%);
+--magenta-8: hsl(325, 84%, 24%);
+--magenta-9: hsl(325, 84%, 17%);
+
+--pink-0: hsl(340, 71%, 97%);
+--pink-1: hsl(340, 72%, 94%);
+--pink-2: hsl(340, 72%, 89%);
+--pink-5: hsl(340, 72%, 72%);
+--pink-6: hsl(340, 38%, 58%);
+--pink-7: hsl(340, 28%, 47%);
+--pink-8: hsl(340, 28%, 36%);
+--pink-9: hsl(340, 28%, 25%);
+
+--brown-0: hsl(12, 40%, 94%);
+--brown-1: hsl(12, 40%, 87%);
+--brown-2: hsl(12, 40%, 74%);
+--brown-5: hsl(12, 72%, 36%);
+--brown-6: hsl(12, 71%, 29%);
+--brown-7: hsl(12, 72%, 24%);
+--brown-8: hsl(12, 72%, 18%);
+--brown-9: hsl(12, 72%, 13%);
+*/
+
+/* END OF FILE ============================================================== */

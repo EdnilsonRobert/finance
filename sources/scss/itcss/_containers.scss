@@ -1,0 +1,40 @@
+/** ============================================================================
+    Group: Components
+    File: Containers
+============================================================================= */
+
+// CONTAINERS STYLES -------------------
+%container-basic {
+  padding: var(--space-sm) var(--space-sm);
+  border-radius: var(--corner-lg);
+  background-color: var(--ui-color-8);
+}
+
+%container-rounded {
+  border-radius: var(--corner-md);
+  border: 1px solid var(--ui-color-5);
+}
+
+%container-styled {
+  border-radius: var(--corner-sm);
+  border: 1px solid var(--ui-color-5);
+  background-color: var(--ui-color-7);
+  box-shadow: 0 .3rem .3rem var(--ui-color-9);
+}
+
+// CONTAINERS --------------------------
+// .container {}
+
+// .section {}
+
+.section+.section {
+  margin-top: var(--space-md);
+}
+
+.module {
+  @extend %container-rounded;
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+}
+
+/* END OF FILE ============================================================== */
