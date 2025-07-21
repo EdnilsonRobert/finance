@@ -7,74 +7,54 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
+// import { categories, fis, payments } from './messages.js';
+// import * as dataExpenses from './fake-expenses.js';
+// import * as dataIncome from './fake-income.js';
+// import * as dataInvestment from './fake-investments.js';
 import * as info from './variables.js';
 import * as component from './components.js';
 import * as formatter from './formatters.js';
+// import * as utils from './utils.js';
+// import * as getter from './getters.js';
 
 // TOOLBAR ---------------------------------------------------------------------
 let toolbarContainer = document.querySelector('.js-toolbar');
 toolbarContainer.append(
   component.toolbar.brand(message.global.menu.label.income, 'brand')
 );
-
-let navigationContainer = document.createElement('nav');
-navigationContainer.classList.add('navigation');
-info.menu.forEach((item, index) => {
-  navigationContainer.append(
-    component.toolbar.menu(item, 'menu-link', index, 1)
-  );
-});
+let navigationContainer = component.create.container('nav', 'navigation');
 toolbarContainer.append(navigationContainer);
+component.toolbar.menu(navigationContainer, 'menu-link', 1);
 
 // DASHBOARD -------------------------------------------------------------------
-let incomeContainer = document.querySelector('.js-container-income');
-
-let sectionIncomeEarnings = component.create.section(message.income.earnings);
-let sectionIncomeShare = component.create.section(message.income.share);
-
-incomeContainer.append(sectionIncomeEarnings, sectionIncomeShare);
-
-let moduleIncome = component.create.module(message.monthly.income);
-let moduleIncomeSummary = component.create.module(
-  message.summary.monthly.expenses
-);
-let moduleCompany = component.create.module(message.company.corporation);
-let moduleReserve = component.create.module(message.reserve.financial);
-let moduleEmergency = component.create.module(message.emergency.fund);
-
-sectionIncomeEarnings.append(moduleIncome);
-
-sectionIncomeShare.append(
-  moduleIncomeSummary,
-  moduleCompany,
-  moduleReserve,
-  moduleEmergency
-);
+let containerMonthlyIncome = document.querySelector('.js-container-income');
 
 // MODULE INCOME -----------------------
-let mainGrid = component.create.cardGrid();
-moduleIncome.append(mainGrid);
-
+containerMonthlyIncome.append(
+  component.place.title(message.income.monthly.earnings, 'wallet')
+);
+let mainGrid = component.create.grid();
+containerMonthlyIncome.append(mainGrid);
 mainGrid.append(
-  component.card(2, 'Agosto', null, '05'),
-  component.card(2, message.monthly.hour, null, info.monthlyHour),
+  component.card(2, info.reportingYear, null, info.reportingMonth),
+  component.card(2, message.income.monthly.hour, null, info.monthlyHours),
   component.card(
     2,
-    message.monthly.value,
+    message.income.monthly.value,
     'brl',
-    formatter.formatMoney(info.monthlyValue)
+    formatter.format.money(info.monthlyValue)
   ),
   component.card(
     2,
-    message.monthly.income,
+    message.income.monthly.income,
     'brl',
-    formatter.formatMoney(info.monthlyIncome)
+    formatter.format.money(info.monthlyIncomeAmount)
   ),
   component.card(
     2,
-    message.monthly.expenses,
+    message.amount.monthly.expenses,
     'brl',
-    formatter.formatMoney(info.monthlyExpensesAmount),
+    formatter.format.money(info.monthlyExpensesAmount),
     null,
     'text-negative'
   ),
@@ -82,180 +62,212 @@ mainGrid.append(
     2,
     message.balance,
     'brl',
-    formatter.formatMoney(info.monthlyBalance)
+    formatter.format.money(info.monthlyBalance)
   )
 );
+containerMonthlyIncome.append(
+  component.barchart(message.income.monthly.balance, info.bcd_incomeBalance)
+);
+// TODO: Adicionar gráfico de linhas para exibir renda ao longo do ano
 
-moduleIncome.append(
-  component.barchart(message.monthly.balance, info.incomeBalance)
+// BREAKDOWN -------------------------------------------------------------------
+let sectionIncomeShare = component.create.container('div', 'container-section');
+containerMonthlyIncome.append(sectionIncomeShare);
+sectionIncomeShare.append(
+  component.place.title(message.income.share, 'pie-chart')
 );
 
 // MODULE INCOME SUMMARY ---------------
-let summaryGrid = component.create.cardGrid();
-moduleIncomeSummary.append(summaryGrid);
-
+let summaryGrid = component.create.grid();
+sectionIncomeShare.append(summaryGrid);
 summaryGrid.append(
   component.card(
     3,
-    message.expenses.essential,
+    message.income.expenses.essential,
     'brl',
-    formatter.formatMoney(info.essentialExpenses)
+    formatter.format.money(info.essentialExpenses)
   ),
   component.card(
     3,
     message.amount.company.expenses,
     'brl',
-    formatter.formatMoney(info.companyExpensesAmount)
+    formatter.format.money(info.companyExpensesAmount)
   ),
   component.card(
     3,
-    message.reserve.financial,
+    message.income.reserve.financial,
     'brl',
-    formatter.formatMoney(info.reserveAmount)
+    formatter.format.money(info.reserveAmount)
   ),
   component.card(
     3,
-    message.amount.expenses,
+    message.amount.monthly.expenses,
     'brl',
-    formatter.formatMoney(info.monthlyExpensesAmount)
+    formatter.format.money(info.monthlyExpensesAmount)
+  )
+);
+// TODO: Adicionar descrições no footer dos cards
+// TODO: Adicionar hint (acima/abaixo de N %) ao cartão Total em despesas
+sectionIncomeShare.append(
+  component.barchart(
+    message.summary.monthly.expenses,
+    info.bcd_monthlyExpensesSummary
   )
 );
 
-moduleIncomeSummary.append(
-  component.barchart(message.monthly.expenses, info.monthlyExpensesSummary)
-);
-
 // MODULE COMPANY ----------------------
-let companySummaryGrid = component.create.cardGrid();
+let moduleCompany = component.create.module(message.company.corporation);
+sectionIncomeShare.append(moduleCompany);
+let companySummaryGrid = component.create.grid();
 moduleCompany.append(companySummaryGrid);
-
 companySummaryGrid.append(
   component.card(
     4,
     message.company.accounting,
     'brl',
-    formatter.formatMoney(info.companyAccounting)
+    formatter.format.money(info.companyAccounting)
   ),
   component.card(
     4,
     message.company.taxes,
     'brl',
-    formatter.formatMoney(info.companyTaxesAmount)
+    formatter.format.money(info.companyTaxesAmount)
   ),
   component.card(
     4,
-    message.amount.expenses,
+    message.amount.company.expenses,
     'brl',
-    formatter.formatMoney(info.companyExpensesAmount)
+    formatter.format.money(info.companyExpensesAmount)
   )
 );
-
 moduleCompany.append(
-  component.barchart(message.amount.company.expenses, info.companyExpenses)
+  component.barchart(message.amount.company.expenses, info.bcd_companyExpenses)
 );
 
-let companyTaxesGrid = component.create.cardGrid();
+let companyTaxesGrid = component.create.grid();
 moduleCompany.append(companyTaxesGrid);
-
 companyTaxesGrid.append(
   component.card(
-    3,
-    message.tax.gps,
+    2,
+    message.company.tax.gps.abbr,
     'brl',
-    formatter.formatMoney(info.companyTaxGPS)
+    formatter.format.money(info.companyTaxGPS)
   ),
   component.card(
-    3,
-    message.tax.iss,
+    2,
+    message.company.tax.iss.abbr,
     'brl',
-    formatter.formatMoney(info.companyTaxISS)
+    formatter.format.money(info.companyTaxISS)
   ),
   component.card(
-    3,
-    message.tax.pis,
+    2,
+    message.company.tax.pis.abbr,
     'brl',
-    formatter.formatMoney(info.companyTaxPIS)
+    formatter.format.money(info.companyTaxPIS)
   ),
   component.card(
-    3,
-    message.tax.irf,
+    2,
+    message.company.tax.cof.abbr,
     'brl',
-    formatter.formatMoney(info.companyTaxIRF)
+    formatter.format.money(info.companyTaxCOF)
+  ),
+  component.card(
+    2,
+    message.company.tax.irf.abbr,
+    'brl',
+    formatter.format.money(info.companyTaxIRF)
+  ),
+  component.card(
+    2,
+    message.company.tax.csl.abbr,
+    'brl',
+    formatter.format.money(info.companyTaxCSL)
   )
 );
-
 moduleCompany.append(
-  component.barchart(message.company.taxes, info.companyTaxes)
+  component.barchart(message.company.taxes, info.bcd_companyTaxes)
 );
 
 // MODULE RESERVE ----------------------
-let reserveGrid = component.create.cardGrid();
+let moduleReserve = component.create.module(message.income.reserve.financial);
+sectionIncomeShare.append(moduleReserve);
+let reserveGrid = component.create.grid();
 moduleReserve.append(reserveGrid);
-
 reserveGrid.append(
   component.card(
     3,
-    message.reserve.emergency,
+    message.income.reserve.emergency,
     'brl',
-    formatter.formatMoney(info.reserveEmergency),
-    message.reserve.description.emergency
+    formatter.format.money(info.reserveEmergency),
+    message.income.reserve.description.emergency
   ),
   component.card(
     3,
-    message.reserve.vacation,
+    message.income.reserve.vacation,
     'brl',
-    formatter.formatMoney(info.reserveVacation),
-    message.reserve.description.vacation
+    formatter.format.money(info.reserveVacation),
+    message.income.reserve.description.vacation
   ),
   component.card(
     3,
-    message.reserve.extra,
+    message.income.reserve.extra,
     'brl',
-    formatter.formatMoney(info.reserveExtra),
-    message.reserve.description.extra
+    formatter.format.money(info.reserveExtra),
+    message.income.reserve.description.extra
   ),
   component.card(
     3,
-    message.reserve.investments,
+    message.income.reserve.investments,
     'brl',
-    formatter.formatMoney(info.reserveInvestments),
-    message.reserve.description.investments
+    formatter.format.money(info.reserveInvestments),
+    message.income.reserve.description.investments,
+    'text-gold'
   )
 );
-
 moduleReserve.append(
-  component.barchart(message.summary.reserve.share, info.financialReserve)
+  component.barchart(message.summary.reserve.share, info.bcd_financialReserve)
 );
+// TODO: Adicionar barchart mostrando a divisão essencial/utilizável
 
 // MODULE EMERGENCY --------------------
-let emergencyGrid = component.create.cardGrid();
+let moduleEmergency = component.create.module(message.income.emergency.fund);
+sectionIncomeShare.append(moduleEmergency);
+let emergencyGrid = component.create.grid();
 moduleEmergency.append(emergencyGrid);
-
 emergencyGrid.append(
   component.card(
     4,
-    message.emergency.target,
+    message.income.emergency.target,
     'brl',
-    formatter.formatMoney(info.emergencyTarget)
+    formatter.format.money(info.emergencyTarget)
   ),
   component.card(
     4,
-    message.emergency.accomplished,
+    message.income.emergency.accomplished,
     'brl',
-    formatter.formatMoney(info.emergencyAccomplished)
+    formatter.format.money(info.emergencyAccomplished)
   ),
   component.card(
     4,
     message.balance,
     'brl',
-    formatter.formatMoney(info.emergencyBalance),
+    formatter.format.money(info.emergencyBalance),
     null,
     'text-negative'
   )
 );
-
+// TODO: Adicionar cartão Gastos essenciais
+// TODO: Adicionar descrições no footer dos cards
 moduleEmergency.append(
-  component.barchart(message.investment.performed, info.emergencyPerformed)
+  component.barchart(
+    message.income.investment.performed,
+    info.bcd_emergencyPerformed
+  )
 );
+
+// RELATED CONTENT -------------------------------------------------------------
+// FINANCIAL INSTITUTIONS --------------
+let containerAccounts = document.querySelector('.js-container-related');
+component.fiAccounts(containerAccounts);
 
 /* END OF FILE ============================================================== */
