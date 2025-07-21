@@ -11,7 +11,8 @@ a, br, em, i, mark, small, span, strong, sub, sup,
 dd, dl, dt, li, ol, ul,
 caption, col, colgroup, table, tbody, td, tfoot, th, thead, tr,
 img, svg,
-::before, ::after {
+::before, ::after,
+ion-icon {
   box-sizing: border-box;
   margin: unset;
   padding: unset;

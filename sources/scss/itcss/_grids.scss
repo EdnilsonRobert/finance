@@ -3,52 +3,37 @@
     File: Grids
 ============================================================================= */
 
+@use './containers';
+
 .grid {
   display: grid;
 }
 
-.grid.grid-cards {
+.grid-cards {
   margin-top: var(--space-sm);
-  margin-bottom: var(--space-sm);
   grid-template-columns: repeat(12, 1fr);
   gap: var(--space-sm);
 }
 
-.col-1 {
-  grid-column: span 1;
+.grid-accounts {
+  @extend %container-rounded;
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
 }
-.col-2 {
-  grid-column: span 2;
-}
-.col-3 {
-  grid-column: span 3;
-}
-.col-4 {
-  grid-column: span 4;
-}
-.col-5 {
-  grid-column: span 5;
-}
-.col-6 {
-  grid-column: span 6;
-}
-.col-7 {
-  grid-column: span 7;
-}
-.col-8 {
-  grid-column: span 8;
-}
-.col-9 {
-  grid-column: span 9;
-}
-.col-10 {
-  grid-column: span 10;
-}
-.col-11 {
-  grid-column: span 11;
-}
-.col-12 {
-  grid-column: span 12;
-}
+
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
 
 /* END OF FILE ============================================================== */

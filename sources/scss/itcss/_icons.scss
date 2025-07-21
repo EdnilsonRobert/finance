@@ -3,20 +3,19 @@
     File: Icons
 ============================================================================= */
 
-.path-classroom {
-  fill: var(--blue-3);
-}
+.path-classroom { fill: var(--blue-3); }
+.path-income { fill: var(--spring-3); }
+.path-investments { fill: var(--gold-3); }
+.path-expenses { fill: var(--red-3); }
 
-.path-income {
-  fill: var(--spring-3);
-}
+.has-icon {
+  display: flex;
+  align-items: center;
 
-.path-investments {
-  fill: var(--gold-3);
-}
-
-.path-expenses {
-  fill: var(--red-3);
+  .ion-icon {
+    margin-right: var(--space-sm);
+    color: var(--ui-color-4);
+  }
 }
 
 /* END OF FILE ============================================================== */

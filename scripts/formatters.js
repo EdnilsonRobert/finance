@@ -4,15 +4,27 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
+// import { categories, fis, payments } from './messages.js';
+// import * as dataExpenses from './fake-expenses.js';
+// import * as dataIncome from './fake-income.js';
+// import * as dataInvestment from './fake-investments.js';
+// import * as info from './variables.js';
+// import * as component from './components.js';
+// import * as formatter from './formatters.js';
+// import * as utils from './utils.js';
+// import * as getter from './getters.js';
 
-export let formatMoney = (value) => {
-  return new Intl.NumberFormat('pt-br', {
-    style: 'currency',
-    currency: 'BRL',
-  })
-    .format(value)
-    .replace(message.global.sign.brl, '')
-    .trim();
+export let format = {
+  floatNumber: (value, digits) => parseFloat(value).toFixed(digits),
+  money: (value) => {
+    return new Intl.NumberFormat('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+      .format(value)
+      .replace(message.global.sign.brl, '')
+      .trim();
+  },
 };
 
 /* END OF FILE ============================================================== */

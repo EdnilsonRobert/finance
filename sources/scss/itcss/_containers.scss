@@ -23,11 +23,11 @@
 }
 
 // CONTAINERS --------------------------
-// .container {}
+.container+.container {
+  margin-top: var(--space-md);
+}
 
-// .section {}
-
-.section+.section {
+.container-section {
   margin-top: var(--space-md);
 }
 

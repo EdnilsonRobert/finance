@@ -7,6 +7,7 @@
 
 .barchart {
   @extend %container-styled;
+  margin-top: var(--space-sm);
   padding: var(--space-sm);
 }
 

@@ -16,17 +16,28 @@
   align-items: center;
 }
 
-.card-title,
-.card-label {
+.card-title, .card-label {
   font-size: 110%;
 }
 
 // .card-content {}
 
 .card-value {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   font-size: 250%;
-  text-align: right;
   color: var(--spring-3);
+}
+
+.value-jc {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .ion-icon {
+    margin-left: var(--space-sm);
+  }
 }
 
 .card-value.text-negative {
@@ -37,6 +48,26 @@
   margin-top: var(--space-xs);
   padding-top: var(--space-xs);
   border-top: .1rem solid var(--ui-color-5);
+}
+
+// CARD ACCOUNTS -----------------------
+.card-account {
+  @extend %container-styled;
+  padding: var(--space-xs);
+}
+
+.card-account-header {
+  padding: var(--space-xs);
+  border-radius: var(--corner-xs);
+  border-bottom: 1px solid var(--ui-color-5);
+  background-color: var(--ui-color-6);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.card-account-text {
+  text-align: center;
+  line-height: var(--line-height-lg);
 }
 
 /* END OF FILE ============================================================== */

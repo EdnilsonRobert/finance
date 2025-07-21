@@ -19,7 +19,8 @@
     "editor.defaultFormatter": "vscode.css-language-features",
     "editor.tabSize": 2,
     "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
+    "editor.wordWrapColumn": 80,
+    "editor.formatOnSave": false
   },
   "scss.format.newlineBetweenRules": false,
   "scss.format.newlineBetweenSelectors": false,

@@ -8,11 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--space);
+  gap: var(--space-md);
 }
 
 .graphic-caption {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
