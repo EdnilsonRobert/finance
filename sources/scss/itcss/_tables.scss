@@ -38,10 +38,6 @@
 .table-cell {
   padding: 0 var(--space-sm);
   line-height: var(--line-height-lg);
-
-  &:not(:first-child) {
-    width: 9%;
-  }
 }
 
 .table-footer-cell {
@@ -63,6 +59,12 @@
 
   .ion-icon {
     margin-left: var(--space-xs);
+  }
+}
+
+.table-investments {
+  .table-cell {
+    &:not(:first-child) { width: 9%; }
   }
 }
 

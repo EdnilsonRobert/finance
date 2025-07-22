@@ -8,6 +8,7 @@ package-lock.json
 # My project
 _TEMP/
 old-project/
+scripts/datasets/
 
 notes.md
 _TEMP-CSS.scss

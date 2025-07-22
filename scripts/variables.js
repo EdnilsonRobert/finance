@@ -22,10 +22,9 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
-// import { categories, fis, payments } from './messages.js';
-// import * as dataExpenses from './fake-expenses.js';
 import * as dataIncome from './fake-income.js';
 import * as dataInvestment from './fake-investments.js';
+import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as component from './components.js';
 // import * as formatter from './formatters.js';
 import * as utils from './utils.js';
@@ -215,6 +214,8 @@ lifeInsurance.injection.forEach((item) => {
 });
 
 // EXPENSES --------------------------------------------------------------------
+export const expenses = dataExpenses;
+
 // CLASSROOM -------------------------------------------------------------------
 
 // COMPONENT: BARCHART DATA [BCD_] ---------------------------------------------
@@ -417,11 +418,22 @@ export const tbd_headerInvestments = [
   message.performance,
 ];
 
+export const tbd_headerExpenses = [
+  message.date,
+  message.description,
+  message.category,
+  message.tag,
+  message.mode,
+  message.payment,
+  message.bank,
+  message.value,
+];
+
 // COMPONENT: GRAPHIC LINE DATA [GLD_] -----------------------------------------
 // COMPONENT: GRAPHIC BAR VERTICAL DATA [GVD_] ---------------------------------
 // COMPONENT: GRAPHIC BAR HORIZONTAL DATA [GHD_] -------------------------------
 
 // RELATED CONTENT -------------------------------------------------------------
-export const fis = message.fis;
+export const fis = message.fi;
 
 /* END OF FILE ============================================================== */

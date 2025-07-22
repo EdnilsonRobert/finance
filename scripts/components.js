@@ -4,10 +4,9 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
-// import { categories, fis, payments } from './messages.js';
-// import * as dataExpenses from './fake-expenses.js';
 // import * as dataIncome from './fake-income.js';
 // import * as dataInvestment from './fake-investments.js';
+// import { expenses as dataExpenses } from './fake-expenses.js';
 import * as info from './variables.js';
 // import * as component from './components.js';
 // import * as formatter from './formatters.js';
@@ -142,8 +141,9 @@ export let card = (span, title, sign = null, value, footer, color) => {
   return card;
 };
 
-export let table = (header, data) => {
+export let table = (header, data, styles = null) => {
   let table = create.container('table', 'table');
+  if (styles) table.classList.add(styles);
 
   let tableHeader = create.container('thead', 'table-header');
   table.append(tableHeader);
@@ -197,17 +197,17 @@ export const fiAccounts = (target) => {
       place.text('p', item.name, 'card-account-header'),
       place.text(
         'p',
-        `${message.fi.code}: ${item.fiCode}`,
+        `${message.financial.institution.code}: ${item.fiCode}`,
         'card-account-text'
       ),
       place.text(
         'p',
-        `${message.fi.agency}: ${item.agency}`,
+        `${message.financial.institution.agency}: ${item.agency}`,
         'card-account-text'
       ),
       place.text(
         'p',
-        `${message.fi.account}: ${item.account}`,
+        `${message.financial.institution.account}: ${item.account}`,
         'card-account-text'
       )
     );

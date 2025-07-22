@@ -7,10 +7,9 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
-// import { categories, fis, payments } from './messages.js';
-// import * as dataExpenses from './fake-expenses.js';
 // import * as dataIncome from './fake-income.js';
 // import * as dataInvestment from './fake-investments.js';
+// import { expenses as dataExpenses } from './fake-expenses.js';
 import * as info from './variables.js';
 import * as component from './components.js';
 import * as formatter from './formatters.js';
@@ -62,7 +61,8 @@ moduleAssetPension.append(
 moduleAssetPension.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.privatePension)
+    utils.model.data.table.investments(info.privatePension),
+    'table-investments'
   )
 );
 
@@ -109,7 +109,8 @@ moduleAssetCDI.append(
 moduleAssetCDI.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.cdi)
+    utils.model.data.table.investments(info.cdi),
+    'table-investments'
   )
 );
 
@@ -126,7 +127,8 @@ moduleAssetPrivateCR.append(
 moduleAssetPrivateCR.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.privateCR)
+    utils.model.data.table.investments(info.privateCR),
+    'table-investments'
   )
 );
 
@@ -143,7 +145,8 @@ moduleAssetFixedRate.append(
 moduleAssetFixedRate.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.fixedRate)
+    utils.model.data.table.investments(info.fixedRate),
+    'table-investments'
   )
 );
 
@@ -160,7 +163,8 @@ moduleAssetRealInterest.append(
 moduleAssetRealInterest.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.realInterest)
+    utils.model.data.table.investments(info.realInterest),
+    'table-investments'
   )
 );
 
@@ -211,7 +215,8 @@ moduleAssetMultiAsset.append(
 moduleAssetMultiAsset.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.multiAsset)
+    utils.model.data.table.investments(info.multiAsset),
+    'table-investments'
   )
 );
 
@@ -265,7 +270,8 @@ moduleAssetStocks.append(
 moduleAssetStocks.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.stocks)
+    utils.model.data.table.investments(info.stocks),
+    'table-investments'
   )
 );
 
@@ -282,7 +288,8 @@ moduleAssetInternational.append(
 moduleAssetInternational.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.international)
+    utils.model.data.table.investments(info.international),
+    'table-investments'
   )
 );
 
@@ -299,7 +306,8 @@ moduleAssetForeignX.append(
 moduleAssetForeignX.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.foreignX)
+    utils.model.data.table.investments(info.foreignX),
+    'table-investments'
   )
 );
 
@@ -348,7 +356,8 @@ moduleAssetProtective.append(
 moduleAssetProtective.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.protective)
+    utils.model.data.table.investments(info.protective),
+    'table-investments'
   )
 );
 
@@ -397,7 +406,8 @@ moduleAssetCrypto.append(
 moduleAssetCrypto.append(
   component.table(
     info.tbd_headerInvestments,
-    utils.model.data.table.investments(info.crypto, 8)
+    utils.model.data.table.investments(info.crypto, 8),
+    'table-investments'
   )
 );
 

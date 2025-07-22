@@ -109,7 +109,141 @@ export const messages = {
     },
   },
 
-  // expenses: {},
+  expenses: {
+    category: {
+      habitation: 'Moradia',
+      services: 'Serviços online',
+      personal: 'Gastos pessoais',
+      food: 'Alimentação',
+      coffee: 'Café',
+      home: 'Casa',
+      health: 'Saúde',
+      education: 'Educação',
+      lifestyle: 'Estilo de vida',
+      culture: 'Lazer e cultura',
+      transportation: 'Transporte',
+      clothing: 'Vestuário',
+      religion: 'Religião',
+      company: 'Empresa',
+      professional: 'Profissional',
+      uncategorized: 'Sem categoria',
+      investment: 'Investimentos',
+    },
+    payment: {
+      fi: {
+        bra: 'Bradesco',
+        c6b: 'C6 Bank',
+        mep: 'Mercado Pago',
+        nbk: 'Nubank',
+      },
+      method: {
+        auto: 'Débito automático',
+        bill: 'Boleto bancário',
+        cash: 'Em dinheiro',
+        credit: 'Cartão de crédito',
+        debit: 'Cartão de débito',
+        pix: 'Pix',
+      },
+      type: {
+        cost: 'Custo de vida',
+        local: 'Compras locais',
+        online: 'Compras online',
+        subscription: 'Assinaturas',
+        uncategorized: 'Não definido',
+        investment: 'Investimentos',
+      },
+    },
+    tag: {
+      habitation: {
+        billcustomer: 'Contas de consumo',
+        condominium: 'Condomínio',
+        internet: 'Vivo Fibra',
+        rent: 'Aluguel',
+      },
+      services: {
+        subscription: 'Assinatura',
+      },
+      personal: {
+        phone: 'Vivo Easy',
+      },
+      food: {
+        butchershop: 'Açougue',
+        convenience: 'Loja de conveniência',
+        delivery: 'Delivery',
+        ifood: 'iFood',
+        local: 'Consumo local',
+        market: 'Supermercado',
+        marketstreet: 'Feira',
+        online: 'Compra online',
+      },
+      coffee: {
+        caps: 'Cápsulas',
+        powder: 'Pós de café',
+        utils: 'Utensílios',
+      },
+      home: {
+        articles: 'Artigos em geral',
+        furniture: 'Mobília',
+      },
+      health: {
+        pharmacy: 'Farmácia',
+      },
+      education: {
+        fiap: 'FIAP',
+      },
+      lifestyle: {
+        barber: 'Barbearia',
+        hobby: 'Hobby',
+        jiujitsu: 'Jiu-Jitsu',
+        massage: 'Massagem',
+      },
+      culture: {
+        book: 'Livros',
+        cine: 'Cinema',
+        food: 'Alimentação',
+        game: 'Jogos',
+        music: 'Música',
+        ticket: 'Ingressos',
+        transportation: 'Transporte',
+        travel: 'Viagem',
+      },
+      transportation: {
+        app99: '99 App',
+        public: 'Transporte público',
+        uber: 'Uber',
+      },
+      clothing: {
+        clothes: 'Roupas',
+        cosmetics: 'Perfumaria',
+      },
+      religion: {
+        kofu: 'Kofu',
+        service: 'Assinaturas online',
+      },
+      company: {
+        accounting: 'Contabilidade',
+        taxes: 'Impostos e taxas',
+        costs: 'Custos e despesas',
+      },
+      professional: {
+        book: 'Livros',
+        course: 'Cursos',
+      },
+      uncategorized: {
+        allowance: 'Mesada',
+        c6: 'Tarifa bancária C6',
+        gift: 'Presentes',
+        unknown: 'Desconhecido',
+      },
+      investment: {
+        pension: 'Previdência privada',
+        fixed: 'Renda fixa',
+        variable: 'Renda variável',
+        insurance: 'Seguros',
+        crypto: 'Criptomoedas',
+      },
+    },
+  },
 
   // classroom: {},
 
@@ -146,6 +280,8 @@ export const messages = {
   },
   asset: 'Ativo',
   balance: 'Saldo',
+  bank: 'Banco',
+  category: 'Categoria',
   company: {
     accounting: 'Contabilidade',
     corporation: 'Empresa',
@@ -181,12 +317,15 @@ export const messages = {
     },
     taxes: 'Taxas e impostos',
   },
-  fi: {
-    account: 'Conta corrente',
-    agency: 'Agência',
-    code: 'Banco',
-  },
+  dashboard: 'Dashboard',
+  date: 'Data',
+  description: 'Descrição',
   financial: {
+    institution: {
+      account: 'Conta corrente',
+      agency: 'Agência',
+      code: 'Banco',
+    },
     institutions: 'Instituições financeiras',
   },
   funeral: {
@@ -198,6 +337,8 @@ export const messages = {
     value: 'Valor da parcela mensal',
   },
   insurance: 'Seguro',
+  mode: 'Modo',
+  payment: 'Pagamento',
   performance: 'Desempenho',
   profile: 'Perfil',
   profits: 'Rendimento',
@@ -206,6 +347,7 @@ export const messages = {
   share: {
     number: 'Quantidade',
   },
+  statement: 'Demonstração de gastos',
   summary: {
     cdi: 'Distribuição de ativos em CDI',
     cryptocurrencies: 'Distribuição de criptomoedas',
@@ -240,6 +382,8 @@ export const messages = {
     },
     stocks: 'Distribuição de ativos em ações brasileiras',
   },
+  tag: 'Marcador',
+  value: 'Valor',
 
   global: {
     menu: {
@@ -259,7 +403,7 @@ export const messages = {
     },
   },
 
-  fis: [
+  fi: [
     {
       name: 'Bradesco',
       fiCode: '123',

@@ -4,10 +4,9 @@
 ============================================================================= */
 
 // import { messages as message } from './messages.js';
-// import { categories, fis, payments } from './messages.js';
-// import * as dataExpenses from './fake-expenses.js';
 // import * as dataIncome from './fake-income.js';
 // import * as dataInvestment from './fake-investments.js';
+// import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as info from './variables.js';
 import * as component from './components.js';
 import * as formatter from './formatters.js';
@@ -46,9 +45,6 @@ export let sum = {
   values: (data) => data.reduce((acc, value) => acc + value),
 };
 
-// INCOME ----------------------------------------------------------------------
-
-// INVESTMENTS -----------------------------------------------------------------
 export let model = {
   data: {
     barchart: (data, labels = null) => {
@@ -65,6 +61,38 @@ export let model = {
       return result;
     },
     table: {
+      expenses: (data) => {
+        let tableBody = component.create.container('tbody', 'table-body');
+        data.forEach((item) => {
+          let tableBodyRow = component.create.container('tr', 'table-row');
+          tableBody.append(tableBodyRow);
+          for (let i in item) {
+            if (i === 'label') {
+              tableBodyRow.append(
+                component.place.text('td', item[i], 'table-cell')
+              );
+            } else if (i === 'value') {
+              let cell = component.create.container('td', 'table-cell');
+              tableBodyRow.append(cell);
+              let text = component.create.container('p', 'cell-jc');
+              cell.append(text);
+              text.append(
+                component.place.text(
+                  'span',
+                  formatter.format.money(item[i]),
+                  'text-negative'
+                ),
+                component.place.icon('arrow-forward', 'text-negative')
+              );
+            } else {
+              tableBodyRow.append(
+                component.place.text('td', item[i], 'table-cell cell-ac')
+              );
+            }
+          }
+        });
+        return tableBody;
+      },
       investments: (data, floatDigits = null) => {
         let tableBody = component.create.container('tbody', 'table-body');
         data.forEach((item) => {
@@ -145,6 +173,10 @@ export let model = {
     },
   },
 };
+
+// INCOME ----------------------------------------------------------------------
+
+// INVESTMENTS -----------------------------------------------------------------
 
 // EXPENSES --------------------------------------------------------------------
 
