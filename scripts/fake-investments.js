@@ -4,407 +4,419 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
-// import * as dataIncome from './fake-income.js';
-// import * as dataInvestment from './fake-investments.js';
+// import { income as dataIncome } from './fake-income.js';
+// import { transactions as dataTransactions } from './fake-investments.js';
+// import { costs as dataCosts } from './fake-expenses.js';
 // import { expenses as dataExpenses } from './fake-expenses.js';
-// import * as info from './variables.js';
 // import * as component from './components.js';
+// import * as graphic from './graphics.js';
 // import * as formatter from './formatters.js';
 // import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
-// PREVIDÊNCIA PRIVADA ---------------------------------------------------------
-export const privatePension = [
-  {
-    asset: {
+// model data = {
+//   name: nome da ativo
+//   category: categoria do ativo
+//   tag: marcador do ativo
+//   profile: perfil do investidor
+//   risk: categoria de risco do ativo
+//   operator: instituição financeira
+//   shares: array [frações do ativo]
+//   injection: array [valor de investimento]
+//   profits: valor do rendimento
+// }
+
+export const transactions = {
+  // PREVIDÊNCIA PRIVADA -------------------------------------------------------
+  privatePension: [
+    {
       name: message.assets.pension.one,
-      operator: message.investment.operator.bra,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.private.pension,
+      tag: message.investments.tag.private.pension,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.bra,
       shares: [1, 1],
       injection: [800, 800],
       profits: 2000,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.pension.two,
-      operator: message.investment.operator.bra,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.private.pension,
+      tag: message.investments.tag.private.pension,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.bra,
       shares: [1, 1, 1],
       injection: [800, 800, 800],
       profits: 2100,
     },
-  },
-];
+  ],
 
-// RENDA FIXA ------------------------------------------------------------------
-export const cdi = [
-  {
-    asset: {
+  // RENDA FIXA ----------------------------------------------------------------
+  cdi: [
+    {
       name: message.assets.cdi.cdb,
-      operator: message.investment.operator.mep,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.cdi,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.mep,
       shares: [1.23, 1.23, 1.23],
       injection: [100, 150, 200],
       profits: 500,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.cdi.selic,
-      operator: message.investment.operator.treasure.bonds,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.cdi,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.treasure.bonds,
       shares: [1.23, 1.23, 1.23],
       injection: [200, 150, 100],
       profits: 500,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.cdi.di,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.cdi,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.nbk,
       shares: [1.23, 1.23, 1.23],
       injection: [100, 200, 150],
       profits: 500,
     },
-  },
-];
-
-export const privateCredit = [
-  {
-    asset: {
+  ],
+  privateCredit: [
+    {
       name: message.assets.private.credit.debenture,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.private.credit,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 1],
       injection: [40, 40, 40],
       profits: 150,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.private.credit.crs,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.private.credit,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 1],
       injection: [40, 40, 40],
       profits: 150,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.private.credit.bonds,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.private.credit,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [1, 2, 2],
       injection: [40, 60, 60],
       profits: 200,
     },
-  },
-];
-
-export const fixedRate = [
-  {
-    asset: {
+  ],
+  fixedRate: [
+    {
       name: message.assets.fixed.rate.treasure,
-      operator: message.investment.operator.treasure.bonds,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.fixed.rate,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.treasure.bonds,
       shares: [1, 1, 1],
       injection: [50, 50, 50],
       profits: 200,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.fixed.rate.cdb,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.fixed.rate,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.nbk,
       shares: [1, 1, 1],
       injection: [50, 50, 50],
       profits: 200,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.fixed.rate.debenture,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.fixed.rate,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.nbk,
       shares: [1, 2, 2],
       injection: [60, 70, 70],
       profits: 300,
     },
-  },
-];
-
-export const realInterest = [
-  {
-    asset: {
+  ],
+  realInterest: [
+    {
       name: message.assets.real.interest.treasure,
-      operator: message.investment.operator.treasure.bonds,
-      profile: message.investment.profile.balanced,
-      risk: message.investment.risk.medium,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.real.interest.rate,
+      profile: message.investments.profile.balanced,
+      risk: message.investments.risk.medium,
+      operator: message.investments.operator.treasure.bonds,
       shares: [1, 1, 1],
       injection: [100, 100, 100],
       profits: 350,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.real.interest.debenture,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.balanced,
-      risk: message.investment.risk.medium,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.real.interest.rate,
+      profile: message.investments.profile.balanced,
+      risk: message.investments.risk.medium,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 2],
       injection: [100, 100, 150],
       profits: 400,
     },
-  },
-];
+  ],
 
-// RENDA HÍBRIDA ---------------------------------------------------------------
-export const multiAsset = [
-  {
-    asset: {
+  // RENDA HÍBRIDA -------------------------------------------------------------
+  multiAsset: [
+    {
       name: message.assets.multi.asset.multimarket,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.balanced,
-      risk: message.investment.risk.medium,
+      category: message.investments.category.hybrid.funds,
+      tag: message.investments.tag.multi.asset,
+      profile: message.investments.profile.balanced,
+      risk: message.investments.risk.medium,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 1],
       injection: [100, 100, 100],
       profits: 350,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.multi.asset.funds.long,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.balanced,
-      risk: message.investment.risk.medium,
+      category: message.investments.category.hybrid.funds,
+      tag: message.investments.tag.multi.asset,
+      profile: message.investments.profile.balanced,
+      risk: message.investments.risk.medium,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 1],
       injection: [100, 100, 100],
       profits: 350,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.multi.asset.funds.quant,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.balanced,
-      risk: message.investment.risk.medium,
+      category: message.investments.category.hybrid.funds,
+      tag: message.investments.tag.multi.asset,
+      profile: message.investments.profile.balanced,
+      risk: message.investments.risk.medium,
+      operator: message.investments.operator.toi,
       shares: [1, 1, 1],
       injection: [100, 100, 100],
       profits: 350,
     },
-  },
-];
+  ],
 
-// RENDA VARIÁVEL --------------------------------------------------------------
-export const stocks = [
-  {
-    asset: {
+  // RENDA VARIÁVEL ------------------------------------------------------------
+  stocks: [
+    {
       name: message.assets.stocks,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.stocks,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.nbk,
       shares: [10, 10, 10],
       injection: [200, 200, 200],
       profits: 650,
     },
-  },
-];
-
-export const international = [
-  {
-    asset: {
+  ],
+  international: [
+    {
       name: message.assets.international.bdr.amz,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.international,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.nbk,
       shares: [5, 5],
       injection: [40, 40],
       profits: 100,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.international.bdr.mli,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.international,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.nbk,
       shares: [5, 5],
       injection: [40, 40],
       profits: 100,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.international.bdr.nbk,
-      operator: message.investment.operator.nbk,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.international,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.nbk,
       shares: [5, 5],
       injection: [40, 40],
       profits: 100,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.international.funds,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.international,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.toi,
       shares: [5, 5],
       injection: [40, 40],
       profits: 100,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.international.ivv,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.international,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.toi,
       shares: [5, 5],
       injection: [40, 40],
       profits: 100,
     },
-  },
-];
-
-export const foreignExchange = [
-  {
-    asset: {
+  ],
+  foreignExchange: [
+    {
       name: message.assets.foreign.exchange.funds,
-      operator: message.investment.operator.c6b,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.foreign.exchange,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.c6b,
       shares: [2, 2],
       injection: [15, 15],
       profits: 50,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.foreign.exchange.cdb,
-      operator: message.investment.operator.c6b,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.foreign.exchange,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.c6b,
       shares: [2, 2],
       injection: [15, 15],
       profits: 50,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.foreign.exchange.currency,
-      operator: message.investment.operator.c6b,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.income.variable,
+      tag: message.investments.tag.foreign.exchange,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.c6b,
       shares: [5, 5],
       injection: [20, 20],
       profits: 50,
     },
-  },
-];
+  ],
 
-// PROTEÇÃO --------------------------------------------------------------------
-export const protective = [
-  {
-    asset: {
+  // PROTEÇÃO ------------------------------------------------------------------
+  protective: [
+    {
       name: message.assets.protective.gold,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.protective,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [2, 2],
       injection: [15, 15],
       profits: 50,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.protective.funds,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.protective,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [2, 2],
       injection: [15, 15],
       profits: 50,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.protective.products,
-      operator: message.investment.operator.toi,
-      profile: message.investment.profile.conservative,
-      risk: message.investment.risk.low,
+      category: message.investments.category.income.fixed,
+      tag: message.investments.tag.protective,
+      profile: message.investments.profile.conservative,
+      risk: message.investments.risk.low,
+      operator: message.investments.operator.toi,
       shares: [5, 5],
       injection: [20, 20],
       profits: 50,
     },
-  },
-];
+  ],
 
-// CRIPTOMOEDAS ----------------------------------------------------------------
-export const cryptoCurrencies = [
-  {
-    asset: {
+  // CRIPTOMOEDAS --------------------------------------------------------------
+  cryptoCurrencies: [
+    {
       name: message.assets.cryptocurrency.btc,
-      operator: message.investment.operator.mep,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.cryptocurrencies,
+      tag: message.investments.tag.cryptocurrencies,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.mep,
       shares: [0, 0.12345678],
       injection: [200, 200],
       profits: 500,
     },
-  },
-  {
-    asset: {
+    {
       name: message.assets.cryptocurrency.eth,
-      operator: message.investment.operator.mep,
-      profile: message.investment.profile.aggressive,
-      risk: message.investment.risk.high,
+      category: message.investments.category.cryptocurrencies,
+      tag: message.investments.tag.cryptocurrencies,
+      profile: message.investments.profile.aggressive,
+      risk: message.investments.risk.high,
+      operator: message.investments.operator.mep,
       shares: [0, 0.12345678],
       injection: [300, 300],
       profits: 900,
     },
-  },
-];
-
-// OUTROS INVESTIMENTOS --------------------------------------------------------
-// SEGURO DE VIDA ----------------------
-export const lifeInsurance = {
-  asset: message.assets.life.insurance,
-  coverage: 123456.78,
-  injection: [
-    [70, 70, 70, 70], // 2022
-    [70, 70, 70, 70, 70, 70, 70, 70, 75, 75, 75, 75], // 2023
-    [75, 75, 75, 75, 75, 75, 75, 75, 80, 80, 80, 80], // 2024
-    [80, 80, 80, 80, 80, 80, 80], // 2025
   ],
-  composition: {
-    insurance: {
-      name: message.insurance,
-      value: 74,
+
+  // OUTROS INVESTIMENTOS ------------------------------------------------------
+  // SEGURO DE VIDA --------------------
+  lifeInsurance: {
+    asset: message.assets.life.insurance,
+    category: message.investments.category.others,
+    tag: message.investments.tag.life.insurance,
+    coverage: 123456.78,
+    injection: {
+      y22: [70, 70, 70, 70], // 2022
+      y23: [70, 70, 70, 70, 70, 70, 70, 70, 75, 75, 75, 75], // 2023
+      y24: [75, 75, 75, 75, 75, 75, 75, 75, 80, 80, 80, 80], // 2024
+      y25: [80, 80, 80, 80, 80, 80, 80], // 2025
     },
-    funeral: {
-      name: message.funeral.assistance,
-      value: 3.5,
-    },
-    hospital: {
-      name: message.hospitalization,
-      value: 2.5,
+    composition: {
+      insurance: {
+        name: message.global.insurance,
+        value: 74,
+      },
+      funeral: {
+        name: message.global.funeral.assistance,
+        value: 3.5,
+      },
+      hospital: {
+        name: message.global.hospitalization,
+        value: 2.5,
+      },
     },
   },
 };

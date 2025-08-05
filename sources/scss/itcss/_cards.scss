@@ -7,7 +7,6 @@
 
 .card {
   @extend %container-styled;
-  padding: var(--space-sm);
 }
 
 .card-header {
@@ -16,11 +15,11 @@
   align-items: center;
 }
 
-.card-title, .card-label {
+// .card-content {}
+
+.card-title, .card-sign {
   font-size: 110%;
 }
-
-// .card-content {}
 
 .card-value {
   display: flex;
@@ -28,20 +27,10 @@
   align-items: center;
   font-size: 250%;
   color: var(--spring-3);
-}
-
-.value-jc {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 
   .ion-icon {
     margin-left: var(--space-sm);
   }
-}
-
-.card-value.text-negative {
-  color: var(--red-3);
 }
 
 .card-footer {

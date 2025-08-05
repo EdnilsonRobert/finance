@@ -4,11 +4,9 @@
 ============================================================================= */
 
 // import { messages as message } from './messages.js';
-// import * as dataIncome from './fake-income.js';
-// import * as dataInvestment from './fake-investments.js';
-// import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as info from './variables.js';
 import * as component from './components.js';
+// import * as graphic from './graphics.js';
 import * as formatter from './formatters.js';
 // import * as utils from './utils.js';
 import * as getter from './getters.js';
@@ -26,6 +24,7 @@ export const colors = [
   'spring',
   'red',
 ];
+// TODO: [ui] alterar color palette
 
 export let calc = {
   percent: (value, amount) => (value / amount) * 100,
@@ -37,148 +36,126 @@ export let calc = {
 };
 
 export let sum = {
-  amount: (...args) => {
-    let sum = 0;
-    for (let arg of args) sum += arg;
-    return sum;
-  },
+  amount: (...args) => args.reduce((acc, arg) => acc + arg),
   values: (data) => data.reduce((acc, value) => acc + value),
 };
 
-export let model = {
-  data: {
-    barchart: (data, labels = null) => {
-      let result = [];
-      let assetProfitsAmount = sum.values(getter.get.profits(data));
-      data.forEach((item, index) => {
-        let obj = {
-          value: calc.percent(item.asset.profits, assetProfitsAmount),
-          label: labels !== null ? labels[index] : item.asset.name,
-          color: colors[index],
-        };
-        result.push(obj);
-      });
-      return result;
-    },
-    table: {
-      expenses: (data) => {
-        let tableBody = component.create.container('tbody', 'table-body');
-        data.forEach((item) => {
-          let tableBodyRow = component.create.container('tr', 'table-row');
-          tableBody.append(tableBodyRow);
-          for (let i in item) {
-            if (i === 'label') {
-              tableBodyRow.append(
-                component.place.text('td', item[i], 'table-cell')
-              );
-            } else if (i === 'value') {
-              let cell = component.create.container('td', 'table-cell');
-              tableBodyRow.append(cell);
-              let text = component.create.container('p', 'cell-jc');
-              cell.append(text);
-              text.append(
-                component.place.text(
-                  'span',
-                  formatter.format.money(item[i]),
-                  'text-negative'
-                ),
-                component.place.icon('arrow-forward', 'text-negative')
-              );
-            } else {
-              tableBodyRow.append(
-                component.place.text('td', item[i], 'table-cell cell-ac')
-              );
-            }
-          }
-        });
-        return tableBody;
-      },
-      investments: (data, floatDigits = null) => {
-        let tableBody = component.create.container('tbody', 'table-body');
-        data.forEach((item) => {
-          let tableBodyRow = component.create.container('tr', 'table-row');
-          tableBody.append(tableBodyRow);
-          for (let i in item.asset) {
-            switch (i) {
-              case 'name':
-                tableBodyRow.append(
-                  component.place.text('td', item.asset.name, 'table-cell')
-                );
-                break;
-              case 'shares':
-                tableBodyRow.append(
-                  component.place.text(
-                    'td',
-                    formatter.format.floatNumber(
-                      sum.values(item.asset.shares),
-                      floatDigits
-                    ),
-                    'table-cell cell-ac'
-                  )
-                );
-                break;
-              case 'injection':
-                tableBodyRow.append(
-                  component.place.text(
-                    'td',
-                    formatter.format.money(sum.values(item.asset.injection)),
-                    `table-cell cell-fm`
-                  )
-                );
-                break;
-              case 'profits':
-                tableBodyRow.append(
-                  component.place.text(
-                    'td',
-                    formatter.format.money(item.asset.profits),
-                    `table-cell cell-fm`
-                  )
-                );
-                break;
-              default:
-                tableBodyRow.append(
-                  component.place.text(
-                    'td',
-                    item.asset[i],
-                    'table-cell cell-ac'
-                  )
-                );
-                break;
-            }
-          }
-
-          let performance = calc.performance(
-            sum.values(item.asset.injection),
-            item.asset.profits
-          );
-          let cell = component.create.container('td', 'table-cell');
-          tableBodyRow.append(cell);
-          let text = component.create.container('p', 'cell-jc');
-          cell.append(text);
-          text.append(
-            component.place.text(
-              'span',
-              performance,
-              performance < 0 ? `text-negative` : 'text-positive'
-            ),
-            component.place.icon(
-              performance < 0 ? 'arrow-down' : 'arrow-up',
-              performance < 0 ? `text-negative` : 'text-positive'
-            )
-          );
-        });
-
-        return tableBody;
-      },
-    },
+export const modelData = {
+  graphicColumns: (data) => {
+    return data.map((item) => ({
+      label: item.label,
+      value: item.value.reduce((acc, curr) => acc + curr),
+    }));
   },
 };
 
 // INCOME ----------------------------------------------------------------------
-
 // INVESTMENTS -----------------------------------------------------------------
+export const modelBarchartInvestmentsCategories = (header, data) => {
+  let amount = getter.getTransactions.amount(data);
+  let result = [];
+  header.forEach((tag, index) => {
+    let values = data
+      .filter((obj) => obj.tag === tag)
+      .map((obj) => obj.profits);
+    result.push({
+      label: tag,
+      value: calc.percent(sum.values(values), amount),
+      color: colors[index],
+    });
+  });
+  return result;
+};
+
+export const modelBarchartInvestmentsAssets = (data, colorscheme = null) => {
+  let assetProfitsAmount = sum.values(getter.getTransactions.profits(data));
+  let color = colorscheme ? colorscheme : colors;
+  return data.map((item, index) => ({
+    value: calc.percent(item.profits, assetProfitsAmount),
+    label: item.name,
+    color: color[index],
+  }));
+};
+
+export const modelTableInvestments = (data, hasDecimal = null) => {
+  let tableBody = component.create.container('tbody', 'table-body');
+  data.forEach((item) => {
+    let shares = !hasDecimal
+      ? sum.values(item.shares)
+      : formatter.format.floatNumber(sum.values(item.shares), hasDecimal);
+    let performance = calc.performance(
+      sum.values(item.injection),
+      item.profits
+    );
+    let performanceText = performance < 0 ? `text-negative` : 'text-positive';
+    let performanceIcon = performance < 0 ? 'arrow-down' : 'arrow-up';
+
+    let tableBodyRow = component.create.container('tr');
+    tableBody.append(tableBodyRow);
+
+    let cellPerformance = component.create.container('td', 'table-cell');
+    let textPerformance = component.create.container('p', 'flex-right');
+    cellPerformance.append(textPerformance);
+    textPerformance.append(
+      component.place.text('span', performance, performanceText),
+      component.place.icon(performanceIcon, performanceText)
+    );
+
+    tableBodyRow.append(
+      component.place.text('td', item.name, 'table-cell'),
+      component.place.text('td', item.operator, 'table-cell text-center'),
+      component.place.text('td', item.profile, 'table-cell text-center'),
+      component.place.text('td', item.risk, 'table-cell text-center'),
+      component.place.text('td', shares, 'table-cell text-center'),
+      component.place.text(
+        'td',
+        formatter.format.money(sum.values(item.injection)),
+        `table-cell cell-money`
+      ),
+      component.place.text(
+        'td',
+        formatter.format.money(item.profits),
+        `table-cell cell-money`
+      ),
+      cellPerformance
+    );
+  });
+  return tableBody;
+};
 
 // EXPENSES --------------------------------------------------------------------
+export const modelTableExpenses = (data) => {
+  let tableBody = component.create.container('tbody', 'table-body');
+  data.forEach((item) => {
+    let tableBodyRow = component.create.container('tr');
+    tableBody.append(tableBodyRow);
+
+    let cellValue = component.create.container('td', 'table-cell');
+    let textValue = component.create.container('p', 'flex-right');
+    cellValue.append(textValue);
+    textValue.append(
+      component.place.text(
+        'span',
+        formatter.format.money(item.value),
+        'text-negative'
+      ),
+      component.place.icon('arrow-forward', 'text-negative')
+    );
+    // TODO: [table] adicionar cashback (icon = arrow-back)
+
+    tableBodyRow.append(
+      component.place.text('td', item.date, 'table-cell text-center'),
+      component.place.text('td', item.label, 'table-cell'),
+      component.place.text('td', item.category, 'table-cell text-center'),
+      component.place.text('td', item.tag, 'table-cell text-center'),
+      component.place.text('td', item.method, 'table-cell text-center'),
+      component.place.text('td', item.type, 'table-cell text-center'),
+      component.place.text('td', item.fi, 'table-cell text-center'),
+      cellValue
+    );
+  });
+  return tableBody;
+};
 
 // CLASSROOM -------------------------------------------------------------------
 

@@ -3,17 +3,33 @@
     File: Utils
 ============================================================================= */
 
-// UTILS -----------------------------------------------------------------------
-.red {background-color: var(--red-4); }
-.gold {background-color: var(--gold-4); }
-.lime {background-color: var(--lime-4); }
-.spring {background-color: var(--spring-4); }
-.aqua {background-color: var(--aqua-4); }
-.blue {background-color: var(--blue-4); }
-.purple {background-color: var(--purple-4); }
-.magenta {background-color: var(--magenta-4); }
-.pink {background-color: var(--pink-4); }
-.brown {background-color: var(--brown-4); }
+// FLEXBOX ---------------------------------------------------------------------
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .ion-icon {
+    margin-left: var(--space-xs);
+  }
+}
+
+// COLOR PALETTE ---------------------------------------------------------------
+.red { background-color: var(--red-4); }
+.gold { background-color: var(--gold-4); }
+.lime { background-color: var(--lime-4); }
+.spring { background-color: var(--spring-4); }
+.aqua { background-color: var(--aqua-4); }
+.blue { background-color: var(--blue-4); }
+.purple { background-color: var(--purple-4); }
+.magenta { background-color: var(--magenta-4); }
+.pink { background-color: var(--pink-4); }
+.brown { background-color: var(--brown-4); }
+
+.text-faded { color: var(--ui-color-3); }
+.text-negative { color: var(--red-3); }
+.text-positive { color: var(--spring-3); }
+.text-warning { color: var(--gold-3); }
 
 .text-red { color: var(--red-3); }
 .text-gold { color: var(--gold-3); }

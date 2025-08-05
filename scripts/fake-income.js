@@ -3,40 +3,26 @@
     Description: Arquivo de dados de renda
 ============================================================================= */
 
-export const monthly = {
-  expense: {
-    company: {
-      accounting: 250,
-      tax: {
-        cof: 100, // COFINS - contribuição para financiamento da seguridade social
-        csl: 100, // CSLL trimestral - contribuição social sobre lucro líquido
-        // das: 300, // DAS - documento de arrecadação fiscal do simples nacional
-        gps: 700, // GPS - INSS e IRRF - guia de previdência social
-        irf: 300, // IRPJ trimestral - imposto de renda para pessoas jurídicas
-        iss: 300, // ISS - imposto sobre serviços de qualquer natureza
-        pis: 100, // PIS - programa de integração social
-      },
-    },
-    home: {
-      rent: 1500,
-      condominium: 500,
-    },
-  },
-  income: {
-    hours: 160,
-    value: 50,
-  },
+// import { messages as message } from './messages.js';
+// import { income as dataIncome } from './fake-income.js';
+// import { transactions as dataTransactions } from './fake-investments.js';
+// import { costs as dataCosts } from './fake-expenses.js';
+// import { expenses as dataExpenses } from './fake-expenses.js';
+// import * as info from './variables.js';
+// import * as component from './components.js';
+// import * as graphic from './graphics.js';
+// import * as formatter from './formatters.js';
+// import * as utils from './utils.js';
+// import * as getter from './getters.js';
+
+export const income = {
   reporting: {
     month: 'Julho',
     year: 2025,
   },
+  hours: 160,
+  value: 50,
+  // TODO: [model/data] remodelar dados para exibir histórico mensal
 };
-// TODO: [08-07-2025] Remodelar dados para exibir histórico mensal
-
-// export const hardware = {
-//   computer: 5000,
-//   smartphone: 2000,
-// };
-// TODO: [08-07-2025] Adicionar depreciação aos custos da empresa
 
 /* END OF FILE ============================================================== */

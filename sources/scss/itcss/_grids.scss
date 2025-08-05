@@ -15,6 +15,12 @@
   gap: var(--space-sm);
 }
 
+.grid-graphics {
+  margin-top: var(--space-sm);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
 .grid-accounts {
   @extend %container-rounded;
   grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));

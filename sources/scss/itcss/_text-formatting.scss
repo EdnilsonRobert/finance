@@ -30,12 +30,8 @@
 
 .overline, .caption {
   font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  line-height: var(--line-height-md);
 }
-
-.text-negative { color: var(--red-3); }
-.text-positive { color: var(--spring-3); }
-.text-warning { color: var(--gold-3); }
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }

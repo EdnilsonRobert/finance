@@ -8,20 +8,6 @@
 .barchart {
   @extend %container-styled;
   margin-top: var(--space-sm);
-  padding: var(--space-sm);
-}
-
-.barchart-ruler {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: var(--space-sm);
-  margin-bottom: var(--space-xs);
-  background-color: var(--ui-color-5);
-}
-
-.barchart-ruler-item {
-  height: .9rem;
 }
 
 /* END OF FILE ============================================================== */

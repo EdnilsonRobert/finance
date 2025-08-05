@@ -16,6 +16,7 @@
 }
 
 %container-styled {
+  padding: var(--space-sm);
   border-radius: var(--corner-sm);
   border: 1px solid var(--ui-color-5);
   background-color: var(--ui-color-7);

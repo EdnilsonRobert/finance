@@ -14,10 +14,6 @@
   box-shadow: 0 .3rem .3rem var(--ui-color-9);
 }
 
-// .table-header {}
-
-// .table-header-row {}
-
 .table-header-cell {
   padding: var(--space-xs) var(--space-sm);
   border-bottom: .1rem solid var(--ui-color-6);
@@ -29,37 +25,14 @@
   background-color: var(--ui-color-8);
 }
 
-.table-footer {
-  background-color: var(--ui-color-7);
-}
-
-// .table-row {}
-
 .table-cell {
   padding: 0 var(--space-sm);
   line-height: var(--line-height-lg);
 }
 
-.table-footer-cell {
-  border-top: .1rem solid var(--ui-color-6);
-}
-
-.cell-ac { text-align: center; }
-.cell-ar { text-align: right; }
-
-.cell-fm {
+.cell-money {
   font-family: var(--font-family-mono);
   text-align: right;
-}
-
-.cell-jc {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  .ion-icon {
-    margin-left: var(--space-xs);
-  }
 }
 
 .table-investments {

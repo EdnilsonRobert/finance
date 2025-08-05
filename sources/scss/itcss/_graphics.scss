@@ -3,12 +3,16 @@
     File: Graphics
 ============================================================================= */
 
+@use './containers';
+
+// GLOBAL ----------------------------------------------------------------------
 // GRAPHIC CAPTIONS --------------------
 .graphic-captions {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--space-md);
+  margin-top: var(--space-sm);
 }
 
 .graphic-caption {
@@ -23,8 +27,73 @@
   height: var(--space-xs);
 }
 
-.graphic-caption-label {
-  font-size: var(--font-size-sm);
+// GRAPHIC RULERS ----------------------
+.graphic-ruler {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  background-color: var(--ui-color-5);
+}
+
+.graphic-ruler-item {
+  height: .9rem;
+}
+
+// GRAPHIC BARS ----------------------------------------------------------------
+.graphic-bars {
+  @extend %container-styled;
+}
+
+.graphic-bars-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs);
+  border-radius: var(--corner-sm);
+  background-color: var(--ui-color-8);
+}
+
+.graphic-bars-row {
+  margin-top: var(--space);
+}
+
+.graphic-bar-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// GRAPHIC COLUMNS -------------------------------------------------------------
+.graphic-columns {
+  @extend %container-styled;
+}
+
+.graphic-columns-grid {
+  grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background-color: var(--ui-color-8);
+}
+
+.graphic-grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.graphic-item-value {
+  margin-bottom: var(--space-xs);
+}
+
+// .graphic-item-bar {}
+
+// .graphic-item-caption {}
+
+.graphic-item-label {
   line-height: var(--line-height-lg);
 }
 

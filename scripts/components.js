@@ -4,11 +4,9 @@
 ============================================================================= */
 
 import { messages as message } from './messages.js';
-// import * as dataIncome from './fake-income.js';
-// import * as dataInvestment from './fake-investments.js';
-// import { expenses as dataExpenses } from './fake-expenses.js';
 import * as info from './variables.js';
 // import * as component from './components.js';
+// import * as graphic from './graphics.js';
 // import * as formatter from './formatters.js';
 // import * as utils from './utils.js';
 // import * as getter from './getters.js';
@@ -30,6 +28,12 @@ export let create = {
     let container = document.createElement('article');
     container.classList.add('module');
     container.append(place.text('h3', title, 'overline'));
+    return container;
+  },
+  section: (title, icon) => {
+    let container = document.createElement('div');
+    container.classList.add('container-section');
+    container.append(place.title(title, icon));
     return container;
   },
 };
@@ -71,19 +75,17 @@ export let svg = {
 // COMPONENTES -----------------------------------------------------------------
 export let barchart = (title, data) => {
   let barchart = create.container('div', 'barchart');
-  let barchartRuler = create.container('div', 'barchart-ruler');
+  let barchartRuler = create.container('div', 'graphic-ruler');
   barchart.append(place.text('p', title, 'overline'), barchartRuler);
   data.forEach((item) => {
     let rulerItem = create.container(
       'span',
-      `barchart-ruler-item ${item.color}`
+      `graphic-ruler-item ${item.color}`
     );
     rulerItem.style.width = `${item.value.toFixed(2)}%`;
     barchartRuler.append(rulerItem);
   });
-
   captions(barchart, data);
-
   return barchart;
 };
 
@@ -92,16 +94,15 @@ export let captions = (target, data) => {
   target.append(container);
 
   data.forEach((item) => {
-    let caption = create.container('p', 'graphic-caption');
-    let captionBullet = document.createElement('span');
-    captionBullet.classList.add('graphic-caption-bullet', item.color);
+    let caption = create.container('p', 'graphic-caption caption');
+    let captionBullet = place.text(
+      'span',
+      '',
+      `graphic-caption-bullet ${item.color}`
+    );
     caption.append(
       captionBullet,
-      place.text(
-        'span',
-        `${item.value.toFixed(2)} % - ${item.label}`,
-        'graphic-caption-label'
-      )
+      place.text('span', `${item.value.toFixed(2)} % - ${item.label}`)
     );
     container.append(caption);
   });
@@ -121,7 +122,6 @@ export let card = (span, title, sign = null, value, footer, color) => {
 
   let cardValue = place.text('p', '', 'card-value');
   if (sign === 'per') {
-    cardValue.classList.add('value-jc');
     if (value < 0) {
       cardValue.append(place.text('span', value, 'text-negative'));
       cardValue.append(place.icon('arrow-down', 'text-negative'));
@@ -134,7 +134,11 @@ export let card = (span, title, sign = null, value, footer, color) => {
   }
   cardContent.append(cardValue);
 
-  // if (footer) {}
+  if (footer) {
+    let cardFooter = create.container('div', 'card-footer');
+    cardFooter.append(place.text('p', footer, 'caption text-right'));
+    card.append(cardFooter);
+  }
 
   if (color) cardValue.classList.add(color);
 
@@ -145,20 +149,20 @@ export let table = (header, data, styles = null) => {
   let table = create.container('table', 'table');
   if (styles) table.classList.add(styles);
 
-  let tableHeader = create.container('thead', 'table-header');
+  let tableHeader = create.container('thead');
   table.append(tableHeader);
-  let tableHeaderRow = create.container('tr', 'table-header-row');
+  let tableHeaderRow = create.container('tr');
   tableHeader.append(tableHeaderRow);
   header.forEach((item) => {
     tableHeaderRow.append(place.text('th', item, 'table-header-cell'));
   });
 
-  // if (footer) {}
-
   let tableBody = data;
   table.append(tableBody);
 
   return table;
+  // TODO: [table] adicionar campo de busca para filtrar pesquisa
+  // TODO: [table] adicionar ordenação de itens de cada coluna
 };
 
 export let toolbar = {
@@ -197,24 +201,24 @@ export const fiAccounts = (target) => {
       place.text('p', item.name, 'card-account-header'),
       place.text(
         'p',
-        `${message.financial.institution.code}: ${item.fiCode}`,
+        `${message.global.financial.institution.code}: ${item.fiCode}`,
         'card-account-text'
       ),
       place.text(
         'p',
-        `${message.financial.institution.agency}: ${item.agency}`,
+        `${message.global.financial.institution.agency}: ${item.agency}`,
         'card-account-text'
       ),
       place.text(
         'p',
-        `${message.financial.institution.account}: ${item.account}`,
+        `${message.global.financial.institution.account}: ${item.account}`,
         'card-account-text'
       )
     );
   });
 
   target.append(
-    place.title(message.financial.institutions, 'server'),
+    place.title(message.global.financial.institutions, 'server'),
     cardGridAccounts
   );
 };
