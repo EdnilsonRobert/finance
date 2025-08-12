@@ -371,6 +371,33 @@ export const gbd_investment = getter.getExpenses.byKey(
 // GRAPHIC: GRAPHIC COLUMNS DATA [GCD_] ----------------------------------------
 
 // GRAPHIC: GRAPHIC LINE DATA [GLD_] -------------------------------------------
+export const gld_economic = {
+  title: message.global.indexes.economic,
+  yIndexBase: 10,
+  xIndex: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'],
+  indexes: [
+    {
+      label: message.global.indexes.label.savings,
+      index: [1, 2, 2.5, 3, 4.5],
+      color: 'magenta',
+    },
+    {
+      label: message.global.indexes.label.ipca,
+      index: [0.5, 1.5, 2, 2.5, 3],
+      color: 'blue',
+    },
+    {
+      label: message.global.indexes.label.cdi,
+      index: [1.5, 3, 4, 6, 7],
+      color: 'lime',
+    },
+    {
+      label: message.income.reserve.investments,
+      index: [5, 15, 5, 10, 5],
+      color: 'gold',
+    },
+  ],
+};
 
 // RELATED CONTENT -------------------------------------------------------------
 export const fis = message.fis;

@@ -8,7 +8,7 @@ import * as info from './variables.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
 // import * as formatter from './formatters.js';
-// import * as utils from './utils.js';
+import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
 // ELEMENTOS BÁSICOS -----------------------------------------------------------
@@ -69,6 +69,87 @@ export let svg = {
       .then((response) => response.text())
       .then((svg) => target.insertAdjacentHTML('afterbegin', svg))
       .catch((error) => console.log(error));
+  },
+
+  // DRAW SVG --------------------------
+  createSVG: (height, name) => {
+    let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.classList.add(name);
+    svg.setAttribute('height', height);
+    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    return svg;
+  },
+  drawRulerH: (target) => {
+    for (let i = 1; i <= 3; i++) {
+      let line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', 0);
+      line.setAttribute('x2', '100%');
+      line.setAttribute('y1', `${25 * i}%`);
+      line.setAttribute('y2', `${25 * i}%`);
+      line.setAttribute('stroke', 'var(--ui-color-5)');
+      line.setAttribute('stroke-width', 1);
+      line.setAttribute('stroke-linecap', 'butt');
+      target.append(line);
+    }
+  },
+  drawRulerV: (target, length) => {
+    let step = 100 / length;
+    let paddingLeft = step / 2;
+    for (let i = 0; i < length; i++) {
+      let line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', `${paddingLeft + step * i}%`);
+      line.setAttribute('x2', `${paddingLeft + step * i}%`);
+      line.setAttribute('y1', 0);
+      line.setAttribute('y2', '100%');
+      line.setAttribute('stroke', 'var(--ui-color-5)');
+      line.setAttribute('stroke-width', 1);
+      line.setAttribute('stroke-linecap', 'butt');
+      target.append(line);
+    }
+  },
+  drawLines: (target, data, yIndexMax) => {
+    data.forEach((obj) => {
+      let step = 100 / obj.index.length;
+      let paddingLeft = step / 2;
+      for (let i = 0; i < obj.index.length - 1; i++) {
+        let line = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'line'
+        );
+        line.setAttribute('x1', `${paddingLeft + step * i}%`);
+        line.setAttribute(
+          'y1',
+          `${utils.calc.yAxis(obj.index[i], yIndexMax)}%`
+        );
+        line.setAttribute('x2', `${paddingLeft + step * i + step}%`);
+        line.setAttribute(
+          'y2',
+          `${utils.calc.yAxis(obj.index[i + 1], yIndexMax)}%`
+        );
+        line.setAttribute('stroke', `var(--${obj.color}-8`);
+        line.setAttribute('stroke-width', 2);
+        line.setAttribute('stroke-linecap', 'butt');
+        target.append(line);
+      }
+    });
+  },
+  placeDots: (target, data, yIndexMax) => {
+    data.forEach((obj) => {
+      let step = 100 / obj.index.length;
+      let paddingLeft = step / 2;
+      for (let i = 0; i < obj.index.length; i++) {
+        let dot = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+        dot.classList.add('dot');
+        dot.setAttribute('cx', `${paddingLeft + step * i}%`);
+        dot.setAttribute('cy', `${utils.calc.yAxis(obj.index[i], yIndexMax)}%`);
+        dot.setAttribute('r', 4);
+        dot.setAttribute('fill', obj.color);
+        target.append(dot);
+      }
+    });
   },
 };
 

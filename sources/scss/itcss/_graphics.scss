@@ -97,4 +97,60 @@
   line-height: var(--line-height-lg);
 }
 
+// GRAPHIC LINES ---------------------------------------------------------------
+.graphic-lines {
+  margin-top: var(--space-sm);
+}
+
+.graphic-lines-container {
+  @extend %container-styled;
+  margin-top: var(--space-sm);
+  display: grid;
+  grid-template-areas: 'y-axis graphic' 'blank x-axis' 'caption caption';
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space);
+}
+
+.graphic-line-grid {
+  grid-area: graphic;
+}
+
+.graphic-line-svg {
+  width: 100%;
+  border-radius: var(--space-sm);
+  border: .1rem solid var(--ui-color-5);
+  background-color: var(--ui-color-8);
+}
+
+.graphic-index-y {
+  grid-area: y-axis;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.graphic-index-y-item {
+  color: var(--ui-color-3);
+  line-height: 2.4rem;
+}
+
+.graphic-index-x {
+  grid-area: x-axis;
+  display: grid;
+}
+
+.graphic-line-x-item {
+  color: var(--ui-color-3);
+  text-align: center;
+}
+
+.graphic-lines {
+  .graphic-captions {
+    grid-area: caption;
+    padding-top: var(--space-sm);
+    border-top: .1rem solid var(--ui-color-5);
+  }
+}
+
 /* END OF FILE ============================================================== */

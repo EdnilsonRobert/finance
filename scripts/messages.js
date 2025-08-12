@@ -109,6 +109,14 @@ export const messages = {
       institutions: 'Instituições financeiras',
     },
     graphics: 'Gráficos',
+    indexes: {
+      economic: 'Indicadores econômicos',
+      label: {
+        cdi: 'CDI',
+        ipca: 'IPCA',
+        savings: 'Poupança',
+      },
+    },
     injection: 'Investimento',
     installment: {
       value: 'Valor da parcela mensal',

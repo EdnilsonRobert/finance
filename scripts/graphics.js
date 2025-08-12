@@ -176,4 +176,64 @@ export const columns = (title, data, colspan = 4, height = 12) => {
   // TODO: [columns] adicionar linhas de guia horizontais e índices na lateral
 };
 
+// GRAPHIC LINES ---------------------------------------------------------------
+export const lines = (data, height = 18) => {
+  let graphicLine = component.create.container('div', 'graphic-lines');
+  let graphicContainer = component.create.container(
+    'div',
+    'graphic-lines-container'
+  );
+  graphicLine.append(
+    component.place.text('p', data.title, 'overline'),
+    graphicContainer
+  );
+
+  let yIndex = component.create.container('div', 'graphic-index-y');
+  let xIndex = component.create.container('div', 'graphic-index-x');
+  let lineGrid = component.create.container('div', 'graphic-line-grid');
+  graphicContainer.append(yIndex, xIndex, lineGrid);
+
+  let yIndexValues = data.indexes.flatMap((obj) => obj.index);
+  let yIndexMin =
+    Math.floor(Math.min(...yIndexValues) / data.yIndexBase) * data.yIndexBase;
+  let yIndexMax =
+    Math.ceil(Math.max(...yIndexValues) / data.yIndexBase) * data.yIndexBase;
+  let yIndexReference = yIndexMax;
+  let yIndexStep = (yIndexMax - yIndexMin) / 4;
+  for (let i = 1; i <= 5; i++) {
+    yIndex.append(component.place.text('p', yIndexMax, 'graphic-index-y-item'));
+    yIndexMax -= yIndexStep;
+  }
+
+  xIndex.style.gridTemplateColumns = `repeat(${data.xIndex.length}, 1fr)`;
+  data.xIndex.forEach((item) => {
+    xIndex.append(component.place.text('p', item, 'graphic-line-x-item'));
+  });
+
+  let captions = component.create.container('div', 'graphic-captions');
+  graphicContainer.append(captions);
+
+  let svgGraphic = component.svg.createSVG(`${height}rem`, 'graphic-line-svg');
+  lineGrid.append(svgGraphic);
+  component.svg.drawRulerH(svgGraphic);
+  component.svg.drawRulerV(svgGraphic, data.xIndex.length);
+
+  component.svg.drawLines(svgGraphic, data.indexes, yIndexReference);
+  component.svg.placeDots(svgGraphic, data.indexes, yIndexReference);
+
+  data.indexes.forEach((obj) => {
+    let caption = component.create.container('p', 'graphic-caption caption');
+    let captionBullet = component.place.text(
+      'span',
+      '',
+      `graphic-caption-bullet ${obj.color}`
+    );
+    caption.append(captionBullet, component.place.text('span', obj.label));
+    captions.append(caption);
+  });
+
+  return graphicLine;
+  // TODO: [lines]: Turn on/off para linhas do gráfico
+};
+
 /* END OF FILE ============================================================== */

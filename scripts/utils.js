@@ -33,6 +33,11 @@ export let calc = {
     let result = (diff / value1) * 100;
     return !Number.isNaN(result) ? formatter.format.floatNumber(result, 3) : 0;
   },
+  yAxis: (value, amount) => (1 - value / amount) * 100,
+  // yAxis: (value, amount) => {
+  //   let result = (value / amount) * 100;
+  //   return !Number.isNaN(result) ? Number(formatter.formatFloat3(result)) : 0;
+  // },
 };
 
 export let sum = {
