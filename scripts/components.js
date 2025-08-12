@@ -73,41 +73,6 @@ export let svg = {
 };
 
 // COMPONENTES -----------------------------------------------------------------
-export let barchart = (title, data) => {
-  let barchart = create.container('div', 'barchart');
-  let barchartRuler = create.container('div', 'graphic-ruler');
-  barchart.append(place.text('p', title, 'overline'), barchartRuler);
-  data.forEach((item) => {
-    let rulerItem = create.container(
-      'span',
-      `graphic-ruler-item ${item.color}`
-    );
-    rulerItem.style.width = `${item.value.toFixed(2)}%`;
-    barchartRuler.append(rulerItem);
-  });
-  captions(barchart, data);
-  return barchart;
-};
-
-export let captions = (target, data) => {
-  let container = create.container('div', 'graphic-captions');
-  target.append(container);
-
-  data.forEach((item) => {
-    let caption = create.container('p', 'graphic-caption caption');
-    let captionBullet = place.text(
-      'span',
-      '',
-      `graphic-caption-bullet ${item.color}`
-    );
-    caption.append(
-      captionBullet,
-      place.text('span', `${item.value.toFixed(2)} % - ${item.label}`)
-    );
-    container.append(caption);
-  });
-};
-
 export let card = (span, title, sign = null, value, footer, color) => {
   let card = create.container('div', `card col-${span}`);
   let cardHeader = create.container('div', 'card-header');
@@ -173,7 +138,7 @@ export let toolbar = {
     return brand;
   },
   menu: (target, styles, active = null) => {
-    let list = ['income', 'investments', 'expenses', 'classroom'];
+    let list = ['income', 'expenses', 'investments', 'classroom'];
     list.forEach((item, index) => {
       let link = document.createElement('a');
       if (styles)

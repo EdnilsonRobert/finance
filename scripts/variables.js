@@ -24,12 +24,11 @@
 import { messages as message } from './messages.js';
 import { income as dataIncome } from './fake-income.js';
 import { transactions as dataTransactions } from './fake-investments.js';
-import { costs as dataCosts } from './fake-expenses.js';
 import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as info from './variables.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
-// import * as formatter from './formatters.js';
+import * as formatter from './formatters.js';
 import * as utils from './utils.js';
 import * as getter from './getters.js';
 
@@ -39,123 +38,47 @@ export const reporting = dataIncome.reporting;
 // INCOME ----------------------------------------------------------------------
 export const incomeHours = dataIncome.hours;
 export const incomeValue = dataIncome.value;
+export const incomeTarget = dataIncome.reserve.target;
 export const incomeAmount = incomeHours * incomeValue;
 
-// INVESTMENTS -----------------------------------------------------------------
-export const transactions = dataTransactions;
-
-export const privatePension = transactions.privatePension;
-export const cdi = transactions.cdi;
-export const privateCredit = transactions.privateCredit;
-export const fixedRate = transactions.fixedRate;
-export const realInterest = transactions.realInterest;
-export const multiAsset = transactions.multiAsset;
-export const stocks = transactions.stocks;
-export const international = transactions.international;
-export const foreignExchange = transactions.foreignExchange;
-export const protective = transactions.protective;
-export const cryptocurrencies = transactions.cryptoCurrencies;
-
-export const incomeFixed = [
-  ...cdi,
-  ...privateCredit,
-  ...fixedRate,
-  ...realInterest,
-];
-export const incomeVariable = [...stocks, ...international, ...foreignExchange];
-
-export const privatePensionInjectionAmount = utils.sum.values(
-  getter.getTransactions.injection(privatePension)
-);
-export const incomeFixedInjectionAmount = utils.sum.amount(
-  utils.sum.values(getter.getTransactions.injection(cdi)),
-  utils.sum.values(getter.getTransactions.injection(privateCredit)),
-  utils.sum.values(getter.getTransactions.injection(fixedRate)),
-  utils.sum.values(getter.getTransactions.injection(realInterest))
-);
-export const hybridFundsInjectionAmount = utils.sum.values(
-  getter.getTransactions.injection(multiAsset)
-);
-export const incomeVariableInjectionAmount = utils.sum.amount(
-  utils.sum.values(getter.getTransactions.injection(stocks)),
-  utils.sum.values(getter.getTransactions.injection(international)),
-  utils.sum.values(getter.getTransactions.injection(foreignExchange))
-);
-export const protectiveInjectionAmount = utils.sum.values(
-  getter.getTransactions.injection(protective)
-);
-export const cryptocurrenciesInjectionAmount = utils.sum.values(
-  getter.getTransactions.injection(cryptocurrencies)
-);
-
-export const privatePensionProfitsAmount = utils.sum.values(
-  getter.getTransactions.profits(privatePension)
-);
-export const incomeFixedProfitsAmount = utils.sum.amount(
-  utils.sum.values(getter.getTransactions.profits(cdi)),
-  utils.sum.values(getter.getTransactions.profits(privateCredit)),
-  utils.sum.values(getter.getTransactions.profits(fixedRate)),
-  utils.sum.values(getter.getTransactions.profits(realInterest))
-);
-export const hybridFundsProfitsAmount = utils.sum.values(
-  getter.getTransactions.profits(multiAsset)
-);
-export const incomeVariableProfitsAmount = utils.sum.amount(
-  utils.sum.values(getter.getTransactions.profits(stocks)),
-  utils.sum.values(getter.getTransactions.profits(international)),
-  utils.sum.values(getter.getTransactions.profits(foreignExchange))
-);
-export const protectiveProfitsAmount = utils.sum.values(
-  getter.getTransactions.profits(protective)
-);
-export const cryptocurrenciesProfitsAmount = utils.sum.values(
-  getter.getTransactions.profits(cryptocurrencies)
-);
-
-// TODO: adicionar getter para receber investimentos por categorias
-// TODO: adicionar getter para receber investimentos por perfil
-// TODO: adicionar getter para receber investimentos por risco
-// TODO: adicionar getter para receber investimentos por operador
-
-export const lifeInsurance = transactions.lifeInsurance;
-const lifeInsuranceInjection = [
-  ...lifeInsurance.injection.y22,
-  ...lifeInsurance.injection.y23,
-  ...lifeInsurance.injection.y24,
-  ...lifeInsurance.injection.y25,
-];
-// TODO: [data] adicionar iteração para injection do seguro de vida
-export const lifeInsuranceInstallments = lifeInsuranceInjection.length;
-export const lifeInsuranceInstallment = utils.sum.amount(
-  lifeInsurance.composition.insurance.value,
-  lifeInsurance.composition.funeral.value,
-  lifeInsurance.composition.hospital.value
-);
-export const lifeInsuranceInjectionAmount = lifeInsuranceInjection.reduce(
-  (acc, item) => acc + item
-);
-// TODO: criar getters para life insurance
-
 // EXPENSES --------------------------------------------------------------------
-export const costs = dataCosts;
 export const expenses = dataExpenses;
+export const reserves = dataTransactions.reserves;
 
-export const costsCompanyAccounting = costs.company.accounting;
-export const costsCompanyTaxes = costs.company.tax;
-export const costsCompanyTaxesAmount = utils.sum.values(
-  Object.values(costs.company.tax)
+export const companyExpenses = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.professional,
+  expenses
 );
-export const costsCompanyExpensesAmount = utils.sum.amount(
-  costsCompanyAccounting,
-  costsCompanyTaxesAmount
+export const companyAccounting = getter.getExpenses.byKey(
+  'tag',
+  message.payments.tag.professional.accounting,
+  companyExpenses
 );
+export const companyTaxes = getter.getExpenses.byKey(
+  'tag',
+  message.payments.tag.professional.taxes,
+  companyExpenses
+);
+export const companyObligations = utils.sum.amount(
+  utils.sum.expensesAmount(companyAccounting),
+  utils.sum.expensesAmount(companyTaxes)
+);
+export const companyOtherExpenses =
+  utils.sum.expensesAmount(companyExpenses) - companyObligations;
 
-export const expensesEssential = utils.sum.values(Object.values(costs.home));
+export const habitationExpenses = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.habitation,
+  expenses
+);
+export const expensesEssential = utils.sum.expensesAmount(habitationExpenses);
 export const incomeUsable = incomeAmount - expensesEssential;
+
 export const reserveEmergency = incomeUsable * 0.08;
-export const reserveExtra = incomeUsable / 12;
-export const reserveVacation = incomeUsable / 12;
+export const reserveExtra = incomeTarget.extra / 12;
 export const reserveInvestments = incomeUsable * 0.1;
+export const reserveVacation = incomeTarget.vacation / 12;
 export const reserveAmount = utils.sum.amount(
   reserveEmergency,
   reserveExtra,
@@ -164,213 +87,214 @@ export const reserveAmount = utils.sum.amount(
 );
 
 export const emergencyTarget = expensesEssential * 6;
-export const emergencyAccomplished = reserveEmergency * 2;
-export const emergencyBalance = emergencyAccomplished - emergencyTarget;
-// TODO: remodelar emergencyAccomplished com dados mensais
+export const emergencyAccomplished = utils.sum.values(reserves.emergency);
+export const emergencyBalance = emergencyTarget - emergencyAccomplished;
 
 export const monthlyObligation = utils.sum.amount(
   expensesEssential,
-  costsCompanyExpensesAmount,
+  companyObligations,
   reserveAmount
 );
 export const monthlyBalance = incomeAmount - monthlyObligation;
-// TODO: remodelar soma de reserveAmount em monthlyObligation
 
-// -------------------------------------
+export const expensesByCategories = getter.getExpenses.groupedBy(
+  'category',
+  expenses
+);
+export const expensesByFIs = getter.getExpenses.groupedBy('fi', expenses);
+export const expensesByMethods = getter.getExpenses.groupedBy(
+  'method',
+  expenses
+);
+export const expensesByTypes = getter.getExpenses.groupedBy('type', expenses);
 
-export const expensesByCategories = getter.getExpensesBy('category', expenses);
-export const expensesByFIs = getter.getExpensesBy('fi', expenses);
-export const expensesByMethods = getter.getExpensesBy('method', expenses);
-export const expensesByTypes = getter.getExpensesBy('type', expenses);
+export const monthlyInvestment = utils.sum.expensesAmount(
+  getter.getExpenses.byKey(
+    'category',
+    message.payments.category.investment,
+    expenses
+  )
+);
+export const expensesAmount =
+  utils.sum.expensesAmount(expenses) - monthlyInvestment;
+export const expensesBalance =
+  incomeAmount - utils.sum.expensesAmount(expenses);
 
-// export const expensesAmount = getter.getExpenses.amount(expenses);
+// INVESTMENTS -----------------------------------------------------------------
+export const transactions = dataTransactions;
 
-// variável [arr] com soma de despesas filtradas por categoria
-// variável [arr] com soma de despesas filtradas por método de pagamento
-// variável [arr] com soma de despesas filtradas por tipo de gasto
-// variável [arr] com soma de despesas filtradas por instituição financeira
-// variável com soma de todas as despesas
-// -> utils
+export const privatePension = transactions.privatePension;
+export const privatePensionInjectionAmount =
+  getter.getTransactions.injection(privatePension);
+export const privatePensionProfitsAmount =
+  getter.getTransactions.profits(privatePension);
 
-// CALCs -----------------------------------------------------------------------
-// INCOME-------------------------------
-// INVESTMENTS--------------------------
-// EXPENSES-----------------------------
+export const cdi = transactions.cdi;
+export const privateCredit = transactions.privateCredit;
+export const fixedRate = transactions.fixedRate;
+export const realInterest = transactions.realInterest;
+export const incomeFixed = [
+  ...cdi,
+  ...privateCredit,
+  ...fixedRate,
+  ...realInterest,
+];
+export const incomeFixedInjectionAmount =
+  getter.getTransactions.injection(incomeFixed);
+export const incomeFixedProfitsAmount =
+  getter.getTransactions.profits(incomeFixed);
+
+export const multiAsset = transactions.multiAsset;
+export const hybridFundsInjectionAmount =
+  getter.getTransactions.injection(multiAsset);
+export const hybridFundsProfitsAmount =
+  getter.getTransactions.profits(multiAsset);
+
+export const stocks = transactions.stocks;
+export const international = transactions.international;
+export const foreignExchange = transactions.foreignExchange;
+export const incomeVariable = [...stocks, ...international, ...foreignExchange];
+export const incomeVariableInjectionAmount =
+  getter.getTransactions.injection(incomeVariable);
+export const incomeVariableProfitsAmount =
+  getter.getTransactions.profits(incomeVariable);
+
+export const protective = transactions.protective;
+export const protectiveInjectionAmount =
+  getter.getTransactions.injection(protective);
+export const protectiveProfitsAmount =
+  getter.getTransactions.profits(protective);
+
+export const cryptocurrencies = transactions.cryptoCurrencies;
+export const cryptocurrenciesInjectionAmount =
+  getter.getTransactions.injection(cryptocurrencies);
+export const cryptocurrenciesProfitsAmount =
+  getter.getTransactions.profits(cryptocurrencies);
+
+// TODO: [getter] adicionar getter para receber investimentos por categorias
+// TODO: [getter] adicionar getter para receber investimentos por perfil
+// TODO: [getter] adicionar getter para receber investimentos por risco
+// TODO: [getter] adicionar getter para receber investimentos por operador
+
+export const lifeInsurance = transactions.lifeInsurance;
+export const lifeInsuranceInjection = lifeInsurance.injection.flatMap(
+  (obj) => obj.value
+);
+export const lifeInsuranceComposition = lifeInsurance.composition.map(
+  (obj) => obj.value
+);
 
 // CLASSROOM -------------------------------------------------------------------
 
 // COMPONENT: BARCHART DATA [BCD_] ---------------------------------------------
-
-// COMPONENT: BARCHART DATA [BCD_] ---------------------------------------------
-export const bcd_incomeBalance = [
+export const bcd_companyExpenses = [
   {
-    value: utils.calc.percent(monthlyObligation, incomeAmount),
-    label: message.global.amount.monthly.expenses,
-    color: 'red',
+    value: utils.sum.expensesAmount(companyAccounting),
+    label: message.global.company.accounting,
   },
   {
-    value: utils.calc.percent(monthlyBalance, incomeAmount),
-    label: message.global.balance,
+    value: utils.sum.expensesAmount(companyTaxes),
+    label: message.global.company.taxes,
+  },
+];
+
+export const bcd_expensesEssential = [
+  { value: expensesEssential, label: message.income.cash.essential },
+  { value: incomeUsable, label: message.income.cash.usable },
+];
+
+export const bcd_financialReserve = [
+  { value: reserveEmergency, label: message.income.reserve.emergency },
+  { value: reserveVacation, label: message.income.reserve.vacation },
+  { value: reserveExtra, label: message.income.reserve.extra },
+  { value: reserveInvestments, label: message.income.reserve.investments },
+];
+export const bcd_emergencyPerformed = [
+  {
+    value: utils.calc.percent(emergencyAccomplished, emergencyTarget),
+    label: message.global.investment.performed,
     color: 'spring',
   },
 ];
 
 export const bcd_monthlyExpensesSummary = [
-  {
-    value: utils.calc.percent(expensesEssential, monthlyObligation),
-    label: message.income.expenses.essential,
-    color: utils.colors[0],
-  },
-  {
-    value: utils.calc.percent(costsCompanyExpensesAmount, monthlyObligation),
-    label: message.global.amount.company.expenses,
-    color: utils.colors[1],
-  },
-  {
-    value: utils.calc.percent(reserveAmount, monthlyObligation),
-    label: message.income.reserve.financial,
-    color: utils.colors[2],
-  },
+  { value: expensesEssential, label: message.income.cash.essential },
+  { value: companyObligations, label: message.global.company.obligation },
+  { value: reserveAmount, label: message.income.reserve.financial },
+];
+export const bcd_incomeBalance = [
+  { value: monthlyObligation, label: message.global.amount.monthly.expenses },
+  { value: monthlyBalance, label: message.global.balance },
 ];
 
-export const bcd_companyExpenses = [
+export const bcd_monthlyExpenses = [
   {
-    value: utils.calc.percent(
-      costsCompanyAccounting,
-      costsCompanyExpensesAmount
-    ),
-    label: message.global.company.accounting,
-    color: utils.colors[0],
-  },
-  {
-    value: utils.calc.percent(
-      costsCompanyTaxesAmount,
-      costsCompanyExpensesAmount
-    ),
-    label: message.global.company.taxes,
-    color: utils.colors[1],
-  },
-];
-
-export const bcd_companyTaxes = [
-  {
-    value: utils.calc.percent(costs.company.tax.gps, costsCompanyTaxesAmount),
-    label: message.global.company.tax.gps.abbr,
-    color: utils.colors[0],
-  },
-  {
-    value: utils.calc.percent(costs.company.tax.iss, costsCompanyTaxesAmount),
-    label: message.global.company.tax.iss.abbr,
-    color: utils.colors[1],
-  },
-  {
-    value: utils.calc.percent(costs.company.tax.pis, costsCompanyTaxesAmount),
-    label: message.global.company.tax.pis.abbr,
-    color: utils.colors[2],
-  },
-  {
-    value: utils.calc.percent(costs.company.tax.cof, costsCompanyTaxesAmount),
-    label: message.global.company.tax.cof.abbr,
-    color: utils.colors[3],
-  },
-  {
-    value: utils.calc.percent(costs.company.tax.irf, costsCompanyTaxesAmount),
-    label: message.global.company.tax.irf.abbr,
-    color: utils.colors[4],
-  },
-  {
-    value: utils.calc.percent(costs.company.tax.csl, costsCompanyTaxesAmount),
-    label: message.global.company.tax.csl.abbr,
-    color: utils.colors[5],
-  },
-];
-
-export const bcd_expensesEssential = [
-  {
-    value: utils.calc.percent(expensesEssential, incomeAmount),
-    label: message.income.expenses.essential,
+    label: message.global.amount.monthly.expenses,
+    value: utils.calc.percent(expensesAmount, incomeAmount),
     color: 'red',
   },
   {
-    value: utils.calc.percent(incomeUsable, incomeAmount),
-    label: message.income.cash.usable,
-    color: 'spring',
+    label: message.global.investment.monthly,
+    value: utils.calc.percent(monthlyInvestment, incomeAmount),
+    color: 'gold',
+  },
+];
+// TODO: [model/data] adicionar getter para investimentos e subtrair de despesas
+
+export const bcd_incomeFixed = [
+  {
+    profits: getter.getTransactions.profits(cdi),
+    name: message.investments.tag.cdi,
+  },
+  {
+    profits: getter.getTransactions.profits(privateCredit),
+    name: message.investments.tag.private.credit,
+  },
+  {
+    profits: getter.getTransactions.profits(fixedRate),
+    name: message.investments.tag.fixed.rate,
+  },
+  {
+    profits: getter.getTransactions.profits(realInterest),
+    name: message.investments.tag.real.interest.rate,
+  },
+];
+export const bcd_incomeVariable = [
+  {
+    profits: getter.getTransactions.profits(stocks),
+    name: message.investments.tag.stocks,
+  },
+  {
+    profits: getter.getTransactions.profits(international),
+    name: message.investments.tag.international,
+  },
+  {
+    profits: getter.getTransactions.profits(foreignExchange),
+    name: message.investments.tag.foreign.exchange,
   },
 ];
 
-export const bcd_financialReserve = [
-  {
-    value: utils.calc.percent(reserveEmergency, reserveAmount),
-    label: message.income.reserve.emergency,
-    color: utils.colors[0],
-  },
-  {
-    value: utils.calc.percent(reserveExtra, reserveAmount),
-    label: message.income.reserve.vacation,
-    color: utils.colors[1],
-  },
-  {
-    value: utils.calc.percent(reserveVacation, reserveAmount),
-    label: message.income.reserve.extra,
-    color: utils.colors[2],
-  },
-  {
-    value: utils.calc.percent(reserveInvestments, reserveAmount),
-    label: message.income.reserve.investments,
-    color: utils.colors[3],
-  },
-];
-
-export const bcd_emergencyPerformed = [
-  {
-    value: utils.calc.percent(emergencyAccomplished, emergencyTarget),
-    label: message.income.investment.performed,
-    color: 'spring',
-  },
-];
-
-export const bcd_incomeFixedHeaders = [
-  message.investments.tag.cdi,
-  message.investments.tag.private.credit,
-  message.investments.tag.fixed.rate,
-  message.investments.tag.real.interest.rate,
-];
-
-export const bcd_incomeVariableHeaders = [
-  message.investments.tag.stocks,
-  message.investments.tag.international,
-  message.investments.tag.foreign.exchange,
-];
-
-export const bcd_lifeInsurance = [
-  {
-    value: utils.calc.percent(
-      lifeInsurance.composition.insurance.value,
-      lifeInsuranceInstallment
-    ),
-    label: lifeInsurance.composition.insurance.name,
-    color: utils.colors[0],
-  },
-  {
-    value: utils.calc.percent(
-      lifeInsurance.composition.funeral.value,
-      lifeInsuranceInstallment
-    ),
-    label: lifeInsurance.composition.funeral.name,
-    color: utils.colors[1],
-  },
-  {
-    value: utils.calc.percent(
-      lifeInsurance.composition.hospital.value,
-      lifeInsuranceInstallment
-    ),
-    label: lifeInsurance.composition.hospital.name,
-    color: utils.colors[2],
-  },
-];
-// TODO: [barchart] remodelar barchartdata do seguro de vida
+export const bcd_lifeInsurance = lifeInsurance.composition.map((obj, index) => {
+  let amount = utils.sum.values(lifeInsuranceComposition);
+  return {
+    value: utils.calc.percent(obj.value, amount),
+    label: `${obj.label} - ${formatter.format.moneyBRL(obj.value)}`,
+    color: utils.colors[index],
+  };
+});
 
 // COMPONENT: TABLE DATA [TBD_] ------------------------------------------------
+export const tbd_headerExpenses = [
+  message.global.date,
+  message.global.description,
+  message.global.category,
+  message.global.tag,
+  message.global.method,
+  message.global.payment,
+  message.global.bank,
+  `${message.global.value} (${message.global.sign.brl})`,
+];
+
 export const tbd_headerInvestments = [
   message.global.asset,
   message.global.operator,
@@ -382,18 +306,67 @@ export const tbd_headerInvestments = [
   `${message.global.performance} (${message.global.sign.percentage})`,
 ];
 
-export const tbd_headerExpenses = [
-  message.global.date,
-  message.global.description,
-  message.global.category,
-  message.global.tag,
-  message.global.mode,
-  message.global.payment,
-  message.global.bank,
-  `${message.global.value} (${message.global.sign.brl})`,
-];
-
 // GRAPHIC: GRAPHIC BARS DATA [GBD_] -------------------------------------------
+export const gbd_habitation = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.habitation,
+  expenses
+);
+export const gbd_food = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.food,
+  expenses
+);
+export const gbd_home = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.home,
+  expenses
+);
+export const gbd_culture = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.culture,
+  expenses
+);
+export const gbd_lifestyle = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.lifestyle,
+  expenses
+);
+export const gbd_clothing = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.clothing,
+  expenses
+);
+export const gbd_transportation = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.transportation,
+  expenses
+);
+export const gbd_professional = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.professional,
+  expenses
+);
+export const gbd_subscription = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.subscription,
+  expenses
+);
+export const gbd_uncategorized = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.uncategorized,
+  expenses
+);
+export const gbd_coffee = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.coffee,
+  expenses
+);
+export const gbd_investment = getter.getExpenses.byKey(
+  'category',
+  message.payments.category.investment,
+  expenses
+);
 
 // GRAPHIC: GRAPHIC COLUMNS DATA [GCD_] ----------------------------------------
 

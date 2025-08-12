@@ -12,6 +12,98 @@ import { messages } from './messages.js';
 import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
+// BARCHART --------------------------------------------------------------------
+export let barchart = (title, data, ruler = null) => {
+  let barchart = component.create.container('div', 'barchart');
+  let barchartRuler = component.create.container('div', 'graphic-ruler');
+  if (ruler) barchartRuler.classList.add(ruler);
+  barchart.append(component.place.text('p', title, 'overline'), barchartRuler);
+  data.forEach((item) => {
+    let rulerItem = component.create.container(
+      'span',
+      `graphic-ruler-item ${item.color}`
+    );
+    rulerItem.style.width = `${item.value.toFixed(2)}%`;
+    barchartRuler.append(rulerItem);
+  });
+  captions(barchart, data);
+  return barchart;
+};
+
+// GRAPHIC CAPTIONS ------------------------------------------------------------
+export let captions = (target, data) => {
+  let container = component.create.container('div', 'graphic-captions');
+  target.append(container);
+  data.forEach((item) => {
+    let caption = component.create.container('p', 'graphic-caption caption');
+    let captionBullet = component.place.text(
+      'span',
+      '',
+      `graphic-caption-bullet ${item.color}`
+    );
+    caption.append(
+      captionBullet,
+      component.place.text('span', `${item.value.toFixed(2)} % - ${item.label}`)
+    );
+    container.append(caption);
+  });
+};
+
+// GRAPHIC BARS ----------------------------------------------------------------
+export let bars = (data, color = 'spring') => {
+  let dataAmount = data.reduce((acc, curr) => acc + curr.value, 0);
+
+  let graphicContainer = component.create.container('div', 'graphic-bars');
+  let graphicTitle = component.place.text('p', '', 'graphic-bars-title');
+  graphicContainer.append(graphicTitle);
+  graphicTitle.append(
+    component.place.text('span', data[0].category, 'text-faded'),
+    component.place.text(
+      'span',
+      formatter.format.moneyBRL(dataAmount),
+      `text-${color}`
+    )
+  );
+
+  data.forEach((item) => {
+    let graphicRow = component.create.container('div', 'graphic-bars-row');
+    graphicContainer.append(graphicRow);
+    let graphicRuler = component.create.container('div', 'graphic-ruler');
+    let rulerBar = component.create.container(
+      'div',
+      `graphic-ruler-item ${color}`
+    );
+    rulerBar.style.width = `${formatter.format.floatNumber(
+      utils.calc.percent(item.value, dataAmount),
+      2
+    )}%`;
+    graphicRuler.append(rulerBar);
+
+    let rowCaption = component.place.text('p', '', 'graphic-bar-caption');
+    rowCaption.append(
+      component.place.text(
+        'span',
+        `${item.label} (${formatter.format.floatNumber(
+          utils.calc.percent(item.value, dataAmount),
+          2
+        )}) %`,
+        'caption'
+      ),
+      component.place.text(
+        'span',
+        formatter.format.moneyBRL(item.value),
+        'caption'
+      )
+    );
+
+    graphicRow.append(graphicRuler, rowCaption);
+  });
+
+  return graphicContainer;
+  // TODO: [bars] modelar gráfico de barras horizontais
+  // TODO: [bars] adicionar personalização de cor ao gráfico
+};
+
 // GRAPHIC COLUMNS -------------------------------------------------------------
 export const columns = (title, data, colspan = 4, height = 12) => {
   const dataAmount = data.reduce((acc, item) => acc + item.value, 0);
@@ -62,6 +154,11 @@ export const columns = (title, data, colspan = 4, height = 12) => {
     let itemLabel = component.create.container('div', 'graphic-item-caption');
     itemLabel.append(
       component.place.text('p', item.label, 'graphic-item-label'),
+      component.place.text(
+        'p',
+        formatter.format.items(item.items),
+        'graphic-item-label'
+      ),
       component.place.text(
         'p',
         `${formatter.format.floatNumber(

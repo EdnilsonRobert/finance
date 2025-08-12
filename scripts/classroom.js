@@ -1,8 +1,8 @@
 /** ============================================================================
     Project: Controle de Finanças
     ----------------------------------------------------------------------------
-    File: Dashboard
-    Description: Dashboard principal da página de investimentos
+    File: Classroom
+    Description: Glossário de investimentos
     Author: EdnilsonRobert
 ============================================================================= */
 
@@ -18,16 +18,14 @@ import * as component from './components.js';
 let containerToolbar = document.querySelector('.js-toolbar');
 let containerNavigation = component.create.container('nav', 'navigation');
 containerToolbar.append(
-  component.toolbar.brand(message.global.menu.label.investments, 'brand'),
+  component.toolbar.brand(message.global.menu.label.classroom, 'brand'),
   containerNavigation
 );
-component.toolbar.menu(containerNavigation, 'menu-link', 3);
+component.toolbar.menu(containerNavigation, 'menu-link', 4);
 
-// INVESTMENTS DASHBOARD -------------------------------------------------------
-let containerDashboard = document.querySelector('.js-container-investments');
-containerDashboard.append(
-  component.place.title(message.global.dashboard, 'grid')
-);
-containerDashboard.append(component.create.module('Container para dashboards'));
+// RELATED CONTENT -------------------------------------------------------------
+// FINANCIAL INSTITUTIONS --------------
+let containerAccounts = document.querySelector('.js-container-related');
+component.fiAccounts(containerAccounts);
 
 /* END OF FILE ============================================================== */

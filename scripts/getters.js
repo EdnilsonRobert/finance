@@ -11,36 +11,44 @@ import { messages as message } from './messages.js';
 import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
-// INVESTMENTS -----------------------------------------------------------------
-export let getTransactions = {
-  amount: (data) =>
-    data.reduce((acc, item) => {
-      return acc + item.profits;
-    }, 0),
-  injection: (data) => data.map((item) => utils.sum.values(item.injection)),
-  profits: (data) => data.map((item) => item.profits),
-};
+// GLOBAL ----------------------------------------------------------------------
+
+// INCOME ----------------------------------------------------------------------
 
 // EXPENSES --------------------------------------------------------------------
-export let getExpensesAmount = (expenses) => {
-  expenses.reduce((acc, obj) => {
-    return acc + obj.value;
-  }, 0);
+export let getExpenses = {
+  byKey: (attribute, key, expenses) => {
+    return expenses.filter((obj) => obj[attribute] === key);
+  },
+  groupedBy: (attribute, expenses) => {
+    const headers = Object.values(message.payments[attribute]);
+    let result = [];
+    headers.forEach((item) => {
+      let values = expenses
+        .filter((obj) => obj[attribute] === item)
+        .map((obj) => obj.value);
+      result.push({
+        label: item,
+        value: values,
+      });
+    });
+    return result;
+  },
 };
 
-export let getExpensesBy = (attribute, expenses) => {
-  const headers = Object.values(message.payments[attribute]);
-  let result = [];
-  headers.forEach((item) => {
-    let obj = {};
-    let values = expenses
-      .filter((expense) => expense[attribute] === item)
-      .map((expense) => expense.value);
-    obj.label = item;
-    obj.value = values;
-    result.push(obj);
-  });
-  return result;
+// INVESTMENTS -----------------------------------------------------------------
+export let getTransactions = {
+  byKey: (attribute, key, transactions) => {
+    return transactions.filter((transaction) => transaction[attribute] === key);
+  },
+  injection: (data) => {
+    let transaction = data.map((obj) => utils.sum.values(obj.injection));
+    return utils.sum.values(transaction);
+  },
+  profits: (data) => {
+    let transaction = data.map((obj) => obj.profits);
+    return utils.sum.values(transaction);
+  },
 };
 
 /* END OF FILE ============================================================== */

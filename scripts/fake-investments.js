@@ -6,7 +6,6 @@
 import { messages as message } from './messages.js';
 // import { income as dataIncome } from './fake-income.js';
 // import { transactions as dataTransactions } from './fake-investments.js';
-// import { costs as dataCosts } from './fake-expenses.js';
 // import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
@@ -27,6 +26,15 @@ import { messages as message } from './messages.js';
 // }
 
 export const transactions = {
+  // RESERVES ------------------------------------------------------------------
+  reserves: {
+    emergency: [500, 550, 500, 600, 450, 500],
+    // extra: [500, 550, 500, 600, 450, 500],
+    // income: [8000, 8800, 8000, 9600, 7200, 8000],
+    // vacation: [500, 550, 500, 600, 450, 500],
+  },
+  // TODO: [model/data] mover acompanhamento de reservas para outros investimentos
+
   // PREVIDÊNCIA PRIVADA -------------------------------------------------------
   privatePension: [
     {
@@ -332,7 +340,7 @@ export const transactions = {
   protective: [
     {
       name: message.assets.protective.gold,
-      category: message.investments.category.income.fixed,
+      category: message.investments.category.protective,
       tag: message.investments.tag.protective,
       profile: message.investments.profile.conservative,
       risk: message.investments.risk.low,
@@ -343,7 +351,7 @@ export const transactions = {
     },
     {
       name: message.assets.protective.funds,
-      category: message.investments.category.income.fixed,
+      category: message.investments.category.protective,
       tag: message.investments.tag.protective,
       profile: message.investments.profile.conservative,
       risk: message.investments.risk.low,
@@ -354,7 +362,7 @@ export const transactions = {
     },
     {
       name: message.assets.protective.products,
-      category: message.investments.category.income.fixed,
+      category: message.investments.category.protective,
       tag: message.investments.tag.protective,
       profile: message.investments.profile.conservative,
       risk: message.investments.risk.low,
@@ -398,26 +406,27 @@ export const transactions = {
     category: message.investments.category.others,
     tag: message.investments.tag.life.insurance,
     coverage: 123456.78,
-    injection: {
-      y22: [70, 70, 70, 70], // 2022
-      y23: [70, 70, 70, 70, 70, 70, 70, 70, 75, 75, 75, 75], // 2023
-      y24: [75, 75, 75, 75, 75, 75, 75, 75, 80, 80, 80, 80], // 2024
-      y25: [80, 80, 80, 80, 80, 80, 80], // 2025
-    },
-    composition: {
-      insurance: {
-        name: message.global.insurance,
+    injection: [
+      { year: '2022', value: [70, 70, 70, 70] },
+      { year: '2023', value: [70, 70, 70, 70, 70, 70, 70, 70, 75, 75, 75, 75] },
+      { year: '2024', value: [75, 75, 75, 75, 75, 75, 75, 75, 80, 80, 80, 80] },
+      { year: '2025', value: [80, 80, 80, 80, 80, 80, 80] },
+    ],
+    composition: [
+      {
+        label: message.investments.share.label.life.insurance.insurance,
         value: 74,
       },
-      funeral: {
-        name: message.global.funeral.assistance,
+      {
+        label:
+          message.investments.share.label.life.insurance.funeral.assistance,
         value: 3.5,
       },
-      hospital: {
-        name: message.global.hospitalization,
+      {
+        label: message.investments.share.label.life.insurance.hospitalization,
         value: 2.5,
       },
-    },
+    ],
   },
 };
 

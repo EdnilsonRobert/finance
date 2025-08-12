@@ -6,7 +6,6 @@
 import { messages as message } from './messages.js';
 // import { income as dataIncome } from './fake-income.js';
 // import { transactions as dataTransactions } from './fake-investments.js';
-// import { costs as dataCosts } from './fake-expenses.js';
 // import { expenses as dataExpenses } from './fake-expenses.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
@@ -15,12 +14,12 @@ import { messages as message } from './messages.js';
 // import * as getter from './getters.js';
 
 const category = message.payments.category;
+const fi = message.payments.fi;
+const method = message.payments.method;
 const tag = message.payments.tag;
 const type = message.payments.type;
-const method = message.payments.method;
-const fi = message.payments.fi;
 
-export const costs = {
+const costs = {
   home: {
     rent: 1500,
     condominium: 500,
@@ -28,15 +27,15 @@ export const costs = {
     internet: 130,
   },
   company: {
-    accounting: 250,
+    accounting: 220,
     tax: {
-      cof: 100,
-      csl: 100,
+      cof: 300,
+      csl: 300,
       // das: 300,
-      gps: 700,
-      irf: 300,
+      gps: 750,
+      irf: 500,
       iss: 300,
-      pis: 100,
+      pis: 70,
     },
   },
   // hardware: {
@@ -230,13 +229,63 @@ export const expenses = [
   },
   {
     date: '01/01',
-    label: 'Taxas e impostos da empresa',
+    label: message.global.company.tax.gps.abbr,
     category: category.professional,
     tag: tag.professional.taxes,
     type: type.recurrent,
     method: method.bill,
     fi: fi.bra,
-    value: 1000,
+    value: costs.company.tax.gps,
+  },
+  {
+    date: '01/01',
+    label: message.global.company.tax.iss.abbr,
+    category: category.professional,
+    tag: tag.professional.taxes,
+    type: type.recurrent,
+    method: method.bill,
+    fi: fi.bra,
+    value: costs.company.tax.iss,
+  },
+  {
+    date: '01/01',
+    label: message.global.company.tax.pis.abbr,
+    category: category.professional,
+    tag: tag.professional.taxes,
+    type: type.recurrent,
+    method: method.bill,
+    fi: fi.bra,
+    value: costs.company.tax.pis,
+  },
+  {
+    date: '01/01',
+    label: message.global.company.tax.cof.abbr,
+    category: category.professional,
+    tag: tag.professional.taxes,
+    type: type.recurrent,
+    method: method.bill,
+    fi: fi.bra,
+    value: costs.company.tax.cof,
+  },
+  {
+    date: '01/01',
+    label: message.global.company.tax.irf.abbr,
+    category: category.professional,
+    tag: tag.professional.taxes,
+    type: type.recurrent,
+    method: method.bill,
+    fi: fi.bra,
+    value: costs.company.tax.irf,
+  },
+  {
+    date: '01/01',
+    label: message.global.company.tax.csl.abbr,
+    category: category.professional,
+    tag: tag.professional.taxes,
+    type: type.recurrent,
+    method: method.bill,
+    fi: fi.bra,
+    value: costs.company.tax.csl,
   },
   {
     date: '01/01',

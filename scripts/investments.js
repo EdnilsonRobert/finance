@@ -9,7 +9,7 @@
 import { messages as message } from './messages.js';
 import * as info from './variables.js';
 import * as component from './components.js';
-// import * as graphic from './graphics.js';
+import * as graphic from './graphics.js';
 import * as formatter from './formatters.js';
 import * as utils from './utils.js';
 // import * as getter from './getters.js';
@@ -46,18 +46,18 @@ cardGridPension.append(
   )
 );
 
-let moduleAssetPension = component.create.module(
+let modulePension = component.create.module(
   message.investments.tag.private.pension
 );
-containerPension.append(moduleAssetPension);
-moduleAssetPension.append(
-  component.barchart(
-    message.global.summary.pension,
-    utils.modelBarchartInvestmentsAssets(info.privatePension)
+containerPension.append(modulePension);
+modulePension.append(
+  graphic.barchart(
+    message.global.summary.private.pension,
+    utils.modelData.barchartInvestments(info.privatePension)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.privatePension),
+    utils.modelData.table(info.privatePension, 'INV'),
     'table-investments'
   )
 );
@@ -94,73 +94,68 @@ cardGridIncomeFixed.append(
   )
 );
 containerIncomeFixed.append(
-  component.barchart(
+  graphic.barchart(
     message.global.summary.income.fixed,
-    utils.modelBarchartInvestmentsCategories(
-      info.bcd_incomeFixedHeaders,
-      info.incomeFixed
-    )
+    utils.modelData.barchartInvestments(info.bcd_incomeFixed)
   )
 );
 
-let moduleAssetCDI = component.create.module(message.investments.tag.cdi);
-containerIncomeFixed.append(moduleAssetCDI);
-moduleAssetCDI.append(
-  component.barchart(
+let moduleCDI = component.create.module(message.investments.tag.cdi);
+containerIncomeFixed.append(moduleCDI);
+moduleCDI.append(
+  graphic.barchart(
     message.global.summary.cdi,
-    utils.modelBarchartInvestmentsAssets(info.cdi)
+    utils.modelData.barchartInvestments(info.cdi)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.cdi),
+    utils.modelData.table(info.cdi, 'INV'),
     'table-investments'
   )
 );
-
-let moduleAssetPrivateCredit = component.create.module(
+let modulePrivateCredit = component.create.module(
   message.investments.tag.private.credit
 );
-containerIncomeFixed.append(moduleAssetPrivateCredit);
-moduleAssetPrivateCredit.append(
-  component.barchart(
+containerIncomeFixed.append(modulePrivateCredit);
+modulePrivateCredit.append(
+  graphic.barchart(
     message.global.summary.private.credit,
-    utils.modelBarchartInvestmentsAssets(info.privateCredit)
+    utils.modelData.barchartInvestments(info.privateCredit)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.privateCredit),
+    utils.modelData.table(info.privateCredit, 'INV'),
     'table-investments'
   )
 );
-
-let moduleAssetFixedRate = component.create.module(
+let moduleFixedRate = component.create.module(
   message.investments.tag.fixed.rate
 );
-containerIncomeFixed.append(moduleAssetFixedRate);
-moduleAssetFixedRate.append(
-  component.barchart(
+containerIncomeFixed.append(moduleFixedRate);
+moduleFixedRate.append(
+  graphic.barchart(
     message.global.summary.fixed.rate,
-    utils.modelBarchartInvestmentsAssets(info.fixedRate)
+    utils.modelData.barchartInvestments(info.fixedRate)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.fixedRate),
+    utils.modelData.table(info.fixedRate, 'INV'),
     'table-investments'
   )
 );
 
-let moduleAssetRealInterest = component.create.module(
+let moduleRealInterest = component.create.module(
   message.investments.tag.real.interest.rate
 );
-containerIncomeFixed.append(moduleAssetRealInterest);
-moduleAssetRealInterest.append(
-  component.barchart(
+containerIncomeFixed.append(moduleRealInterest);
+moduleRealInterest.append(
+  graphic.barchart(
     message.global.summary.real.interest,
-    utils.modelBarchartInvestmentsAssets(info.realInterest)
+    utils.modelData.barchartInvestments(info.realInterest)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.realInterest),
+    utils.modelData.table(info.realInterest, 'INV'),
     'table-investments'
   )
 );
@@ -199,18 +194,18 @@ cardGridIncomeHybrid.append(
   )
 );
 
-let moduleAssetMultiAsset = component.create.module(
+let moduleMultiAsset = component.create.module(
   message.investments.tag.multi.asset
 );
-containerIncomeHybrid.append(moduleAssetMultiAsset);
-moduleAssetMultiAsset.append(
-  component.barchart(
+containerIncomeHybrid.append(moduleMultiAsset);
+moduleMultiAsset.append(
+  graphic.barchart(
     message.global.summary.multi.asset,
-    utils.modelBarchartInvestmentsAssets(info.multiAsset)
+    utils.modelData.barchartInvestments(info.multiAsset)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.multiAsset),
+    utils.modelData.table(info.multiAsset, 'INV'),
     'table-investments'
   )
 );
@@ -252,57 +247,52 @@ cardGridIncomeVariable.append(
   )
 );
 containerIncomeVariable.append(
-  component.barchart(
-    message.global.summary.income.fixed,
-    utils.modelBarchartInvestmentsCategories(
-      info.bcd_incomeVariableHeaders,
-      info.incomeVariable
-    )
+  graphic.barchart(
+    message.global.summary.income.variable,
+    utils.modelData.barchartInvestments(info.bcd_incomeVariable)
   )
 );
 
-let moduleAssetStocks = component.create.module(message.investments.tag.stocks);
-containerIncomeVariable.append(moduleAssetStocks);
-moduleAssetStocks.append(
-  component.barchart(
+let moduleStocks = component.create.module(message.investments.tag.stocks);
+containerIncomeVariable.append(moduleStocks);
+moduleStocks.append(
+  graphic.barchart(
     message.global.summary.stocks,
-    utils.modelBarchartInvestmentsAssets(info.stocks)
+    utils.modelData.barchartInvestments(info.stocks)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.stocks),
+    utils.modelData.table(info.stocks, 'INV'),
     'table-investments'
   )
 );
-
-let moduleAssetInternational = component.create.module(
+let moduleInternational = component.create.module(
   message.investments.tag.international
 );
-containerIncomeVariable.append(moduleAssetInternational);
-moduleAssetInternational.append(
-  component.barchart(
+containerIncomeVariable.append(moduleInternational);
+moduleInternational.append(
+  graphic.barchart(
     message.global.summary.international,
-    utils.modelBarchartInvestmentsAssets(info.international)
+    utils.modelData.barchartInvestments(info.international)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.international),
+    utils.modelData.table(info.international, 'INV'),
     'table-investments'
   )
 );
-
-let moduleAssetForeignX = component.create.module(
+let moduleForeignX = component.create.module(
   message.investments.tag.foreign.exchange
 );
-containerIncomeVariable.append(moduleAssetForeignX);
-moduleAssetForeignX.append(
-  component.barchart(
+containerIncomeVariable.append(moduleForeignX);
+moduleForeignX.append(
+  graphic.barchart(
     message.global.summary.foreign.exchange,
-    utils.modelBarchartInvestmentsAssets(info.foreignExchange)
+    utils.modelData.barchartInvestments(info.foreignExchange)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.foreignExchange),
+    utils.modelData.table(info.foreignExchange, 'INV'),
     'table-investments'
   )
 );
@@ -339,18 +329,18 @@ cardGridProtective.append(
   )
 );
 
-let moduleAssetProtective = component.create.module(
+let moduleProtective = component.create.module(
   message.investments.tag.protective
 );
-containerProtective.append(moduleAssetProtective);
-moduleAssetProtective.append(
-  component.barchart(
+containerProtective.append(moduleProtective);
+moduleProtective.append(
+  graphic.barchart(
     message.global.summary.protective,
-    utils.modelBarchartInvestmentsAssets(info.protective)
+    utils.modelData.barchartInvestments(info.protective)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.protective),
+    utils.modelData.table(info.protective, 'INV'),
     'table-investments'
   )
 );
@@ -390,18 +380,18 @@ cardGridCrypto.append(
   )
 );
 
-let moduleAssetCrypto = component.create.module(
+let moduleCrypto = component.create.module(
   message.investments.tag.cryptocurrencies
 );
-containerCrypto.append(moduleAssetCrypto);
-moduleAssetCrypto.append(
-  component.barchart(
+containerCrypto.append(moduleCrypto);
+moduleCrypto.append(
+  graphic.barchart(
     message.global.summary.cryptocurrencies,
-    utils.modelBarchartInvestmentsAssets(info.cryptocurrencies)
+    utils.modelData.barchartInvestments(info.cryptocurrencies)
   ),
   component.table(
     info.tbd_headerInvestments,
-    utils.modelTableInvestments(info.cryptocurrencies, 8),
+    utils.modelData.table(info.cryptocurrencies, 'INV', 8),
     'table-investments'
   )
 );
@@ -412,6 +402,7 @@ let containerOtherInvestments = document.querySelector('.js-container-others');
 containerOtherInvestments.append(
   component.place.title(message.investments.category.others, 'wallet')
 );
+
 let moduleAssetLifeInsurance = component.create.module(
   info.lifeInsurance.asset
 );
@@ -430,23 +421,23 @@ cardGridLifeInsurance.append(
     3,
     message.global.amount.installments,
     null,
-    info.lifeInsuranceInstallments
+    info.lifeInsuranceInjection.length
   ),
   component.card(
     3,
     message.global.installment.value,
     'brl',
-    formatter.format.money(info.lifeInsuranceInstallment)
+    formatter.format.money(utils.sum.values(info.lifeInsuranceComposition))
   ),
   component.card(
     3,
     message.global.amount.life.insurance.injection,
     'brl',
-    formatter.format.money(info.lifeInsuranceInjectionAmount)
+    formatter.format.money(utils.sum.values(info.lifeInsuranceInjection))
   )
 );
 moduleAssetLifeInsurance.append(
-  component.barchart(message.global.summary.insurance, info.bcd_lifeInsurance)
+  graphic.barchart(message.global.summary.insurance, info.bcd_lifeInsurance)
 );
 
 // RELATED CONTENT -------------------------------------------------------------

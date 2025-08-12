@@ -3,36 +3,242 @@
     Description: Arquivo de variáveis de mensagens
 ============================================================================= */
 
+// model messages = {
+//   global {},
+//   income {},
+//   expenses {},
+//   investments {},
+//   payments {},
+//   classroom {},
+//   fis {},
+//   assets {},
+// };
+
 export const messages = {
-  income: {
-    cash: {
-      // essential: 'Essencial',
-      usable: 'Saldo utilizável',
+  // GLOBAL --------------------------------------------------------------------
+  global: {
+    amount: {
+      company: {
+        expenses: 'Total de obrigações de empresa',
+      },
+      injection: {
+        crypto: 'Total investido em criptomoedas',
+        fixed: 'Total investido em renda fixa',
+        hybrid: 'Total investido em renda híbrida',
+        pension: 'Total investido em previdência privada',
+        protective: 'Total investido em ativos de proteção',
+        variable: 'Total investido em renda variável',
+      },
+      installments: 'Parcelas pagas',
+      life: {
+        insurance: {
+          coverage: 'Valor da cobertura',
+          injection: 'Total investido',
+        },
+      },
+      monthly: {
+        expenses: 'Total em despesas',
+      },
+      profits: {
+        crypto: 'Total de rendimentos em criptomoedas',
+        fixed: 'Total de rendimentos em renda fixa',
+        hybrid: 'Total de rendimentos em renda híbrida',
+        pension: 'Total de rendimentos em previdência privada',
+        protective: 'Total de rendimentos em ativos de proteção',
+        variable: 'Total de rendimentos em renda variável',
+      },
     },
-    emergency: {
-      accomplished: 'Alcançada',
-      fund: 'Fundo de emergência',
-      target: 'Meta',
+    asset: 'Ativo',
+    balance: 'Saldo',
+    bank: 'Banco',
+    category: 'Categoria',
+    company: {
+      accounting: 'Contabilidade',
+      corporation: 'Empresa',
+      expenses: {
+        accounting: 'Mensalidade da Conube',
+        obligations: 'Contabilidade e impostos',
+        others: 'Gastos não contabilizados como obrigações',
+        taxes: 'Soma de taxas e impostos',
+      },
+      obligation: 'Obrigações da empresa',
+      other: {
+        expenses: 'Outras despesas',
+      },
+      tax: {
+        cof: {
+          abbr: 'COFINS',
+          desc: 'COFINS [Contribuição para Financiamento da Seguridade Social]',
+        },
+        csl: {
+          abbr: 'CSLL',
+          desc: 'CSLL [Contribuição Social sobre Lucro Líquido]',
+        },
+        das: {
+          abbr: 'DAS',
+          desc: 'DAS [Documento de Arrecadação Fiscal do Simples Nacional]',
+        },
+        gps: {
+          abbr: 'GPS',
+          desc: 'GPS (INSS e IRRF) [Guia de Previdência Social]',
+        },
+        irf: {
+          abbr: 'IRPJ',
+          desc: 'IRPJ [Imposto de Renda para Pessoas Jurídicas]',
+        },
+        iss: {
+          abbr: 'ISS',
+          desc: 'ISS [Imposto sobre Serviços de Qualquer Natureza]',
+        },
+        pis: {
+          abbr: 'PIS',
+          desc: 'PIS [Programa de Integração Social]',
+        },
+      },
+      taxes: 'Taxas e impostos',
     },
-    expenses: {
-      essential: 'Despesas essenciais',
+    dashboard: 'Dashboard',
+    date: 'Data',
+    description: 'Descrição',
+    financial: {
+      institution: {
+        account: 'Conta corrente',
+        agency: 'Agência',
+        code: 'Banco',
+      },
+      institutions: 'Instituições financeiras',
+    },
+    graphics: 'Gráficos',
+    injection: 'Investimento',
+    installment: {
+      value: 'Valor da parcela mensal',
     },
     investment: {
+      expectation: 'Abaixo da espectativa de investimentos:',
+      monthly: 'Investimento mensal',
       performed: 'Investimento realizado',
+      success: 'Sucesso! Meta alcançada',
     },
+    investments: {
+      calculator: 'Calculadora de investimentos',
+      target: 'Reserva destinada a investimentos',
+    },
+    items: {
+      none: 'Nenhum item',
+      plural: 'itens',
+      singular: 'item',
+    },
+    menu: {
+      label: {
+        classroom: 'Sala de aula',
+        expenses: 'Controle de gastos',
+        income: 'Controle de renda',
+        investments: 'Controle de investimentos',
+      },
+    },
+    method: 'Método',
     monthly: {
       balance: 'Balanço mensal',
-      earnings: 'Proventos',
-      hour: 'Horas trabalhadas',
       income: 'Renda mensal',
+    },
+    operator: 'Operador',
+    payment: 'Pagamento',
+    performance: 'Desempenho',
+    profile: 'Perfil',
+    profits: 'Rendimento',
+    project: {
+      name: 'Controle Financeiro',
+    },
+    risk: 'Risco',
+    share: {
+      number: 'Quantidade',
+    },
+    sign: {
+      brl: 'R$',
+      percentage: '%',
+    },
+    statement: 'Demonstração de gastos',
+    summary: {
+      cdi: 'Distribuição de ativos em CDI',
+      company: {
+        obligations: 'Resumo de obrigações de empresa',
+      },
+      cryptocurrencies: 'Distribuição de criptomoedas',
+      expenses: {
+        category: 'Distribuição de despesas por categorias',
+        fi: 'Distribuição de despesas por instituições financeiras',
+        method: 'Distribuição de despesas por métodos de pagamento',
+        type: 'Distribuição de despesas por tipos de pagamento',
+      },
+      fixed: {
+        rate: 'Distribuição de ativos prefixados',
+      },
+      foreign: {
+        exchange: 'Distribuição de ativos cambiais',
+      },
+      income: {
+        fixed: 'Distribuição de ativos em renda fixa',
+        variable: 'Distribuição de ativos em renda variável',
+      },
+      insurance: 'Composição do seguro',
+      international: 'Distribuição de ativos internacionais',
+      monthly: {
+        expenses: 'Resumo de despesas mensais',
+      },
+      multi: {
+        asset: 'Distribuição de ativos em multimercado',
+      },
+      payment: {
+        category: 'Distribuição de gastos por categoria',
+      },
+      private: {
+        credit: 'Distribuição de ativos em crédito privado',
+        pension: 'Distribuição de ativos em previdência privada',
+      },
+      protective: 'Distribuição de ativos em proteção',
+      real: {
+        interest: 'Distribuição de ativos em juro real',
+      },
+      reserve: {
+        share: 'Composição de reserva financeira',
+      },
+      stocks: 'Distribuição de ativos em ações brasileiras',
+    },
+    tag: 'Marcador',
+    value: 'Valor',
+  },
+
+  // INCOME --------------------------------------------------------------------
+  income: {
+    cash: {
+      essential: 'Despesas essenciais',
+      usable: 'Saldo utilizável',
+    },
+    earnings: 'Proventos',
+    emergency: {
+      accomplished: 'Desempenho atual',
+      description: {
+        accomplished: 'Total acumulado para fundo de emergência',
+        balance: {
+          negative: 'Objetivo para alcançar a meta',
+          positive: 'Meta alcançada e superada em...',
+        },
+        essential: 'Despesa básica de moradia',
+        target: 'Estimativa para seis meses de despesas essenciais',
+      },
+      fund: 'Fundo de emergência',
+      target: 'Meta para fundo de emergência',
+    },
+    reporting: {
+      hour: 'Horas trabalhadas',
       value: 'Valor/hora',
     },
     reserve: {
       description: {
-        emergency: '8% do utilizável',
-        extra: '1/12 do utilizável',
+        emergency: '8% do saldo utilizável',
+        extra: '1/12 da meta de 13\u00B0 salário',
         investments: '10% do utilizável',
-        vacation: '1/12 do utilizável',
+        vacation: '1/12 da meta de férias',
       },
       emergency: 'Emergência',
       extra: '13\u00B0 salário',
@@ -43,6 +249,10 @@ export const messages = {
     share: 'Distribuição de renda',
   },
 
+  // EXPENSES ------------------------------------------------------------------
+  expenses: {},
+
+  // INVESTMENTS ---------------------------------------------------------------
   investments: {
     category: {
       cryptocurrencies: 'Criptomoedas',
@@ -57,6 +267,7 @@ export const messages = {
       private: {
         pension: 'Previdência privada',
       },
+      protective: 'Proteção',
     },
     operator: {
       bra: 'Bradesco',
@@ -77,6 +288,36 @@ export const messages = {
       high: 'Risco alto',
       low: 'Risco baixo',
       medium: 'Risco médio',
+    },
+    share: {
+      description: {
+        //     cdi: '27% da parcela para investimentos',
+        cryptocurrencies: '10% da meta de investimentos',
+        //     fixedRate: '1% da parcela para investimentos',
+        //     foreignExchange: '2% da parcela para investimentos',
+        //     international: '8% da parcela para investimentos',
+        //     multiAsset: '18% da parcela para investimentos',
+        portfolio: '50% da meta de investimentos',
+        //     privateCredit: '8% da parcela para investimentos',
+        privatePension: '40% da meta de investimentos',
+        //     protective: '2% da parcela para investimentos',
+        //     realInterestRate: '13% da parcela para investimentos',
+        //     stocks: '12% da parcela para investimentos',
+      },
+      label: {
+        cryptocurrencies: 'Criptomoedas',
+        life: {
+          insurance: {
+            funeral: {
+              assistance: 'Assistência funeral',
+            },
+            hospitalization: 'Hospitalização',
+            insurance: 'Seguro',
+          },
+        },
+        portfolio: 'Carteira de investimentos',
+        privatePension: 'Previdência Privada',
+      },
     },
     tag: {
       cdi: 'CDI',
@@ -108,8 +349,7 @@ export const messages = {
     },
   },
 
-  // expenses: {},
-
+  // PAYMENTS ------------------------------------------------------------------
   payments: {
     category: {
       habitation: 'Moradia',
@@ -121,8 +361,8 @@ export const messages = {
       transportation: 'Transporte',
       professional: 'Profissional',
       subscription: 'Assinaturas',
-      coffee: 'Café',
       uncategorized: 'Sem categoria',
+      coffee: 'Café',
       investment: 'Investimentos',
     },
     fi: {
@@ -140,7 +380,7 @@ export const messages = {
       cash: 'Em dinheiro',
     },
     type: {
-      recurrent: 'Pagementos recorrentes',
+      recurrent: 'Pagamentos recorrentes',
       local: 'Pagamentos locais',
       online: 'Pagamentos online',
       uncategorized: 'Não definido',
@@ -204,16 +444,16 @@ export const messages = {
         video: 'Stream de vídeos',
         mobile: 'Telefonia móvel',
       },
-      coffee: {
-        caps: 'Cápsulas de café',
-        package: 'Pó de café',
-        utils: 'Utensílios',
-      },
       uncategorized: {
         allowance: 'Mesada',
         c6: 'Tarifa bancária C6',
         gifts: 'Presentes',
         unknown: 'Desconhecido',
+      },
+      coffee: {
+        caps: 'Cápsulas de café',
+        package: 'Pó de café',
+        utils: 'Utensílios',
       },
       investment: {
         pension: 'Previdência privada',
@@ -224,178 +464,10 @@ export const messages = {
     },
   },
 
+  // CLASSROOM -----------------------------------------------------------------
   // classroom: {},
 
-  global: {
-    amount: {
-      company: {
-        expenses: 'Gastos de empresa',
-      },
-      injection: {
-        crypto: 'Total investido em criptomoedas',
-        fixed: 'Total investido em renda fixa',
-        hybrid: 'Total investido em renda híbrida',
-        pension: 'Total investido em previdência privada',
-        protective: 'Total investido em ativos de proteção',
-        variable: 'Total investido em renda variável',
-      },
-      installments: 'Parcelas pagas',
-      life: {
-        insurance: {
-          coverage: 'Valor da cobertura',
-          injection: 'Total investido',
-        },
-      },
-      monthly: {
-        expenses: 'Total em despesas',
-      },
-      profits: {
-        crypto: 'Total de rendimentos em criptomoedas',
-        fixed: 'Total de rendimentos em renda fixa',
-        hybrid: 'Total de rendimentos em renda híbrida',
-        pension: 'Total de rendimentos em previdência privada',
-        protective: 'Total de rendimentos em ativos de proteção',
-        variable: 'Total de rendimentos em renda variável',
-      },
-    },
-    asset: 'Ativo',
-    balance: 'Saldo',
-    bank: 'Banco',
-    category: 'Categoria',
-    company: {
-      accounting: 'Contabilidade',
-      corporation: 'Empresa',
-      tax: {
-        cof: {
-          abbr: 'COFINS',
-          desc: 'COFINS [Contribuição para Financiamento da Seguridade Social]',
-        },
-        csl: {
-          abbr: 'CSLL',
-          desc: 'CSLL [Contribuição Social sobre Lucro Líquido]',
-        },
-        das: {
-          abbr: 'DAS',
-          desc: 'DAS [Documento de Arrecadação Fiscal do Simples Nacional]',
-        },
-        gps: {
-          abbr: 'GPS',
-          desc: 'GPS (INSS e IRRF) [Guia de Previdência Social]',
-        },
-        irf: {
-          abbr: 'IRPJ',
-          desc: 'IRPJ [Imposto de Renda para Pessoas Jurídicas]',
-        },
-        iss: {
-          abbr: 'ISS',
-          desc: 'ISS [Imposto sobre Serviços de Qualquer Natureza]',
-        },
-        pis: {
-          abbr: 'PIS',
-          desc: 'PIS [Programa de Integração Social]',
-        },
-      },
-      taxes: 'Taxas e impostos',
-    },
-    dashboard: 'Dashboard',
-    date: 'Data',
-    description: 'Descrição',
-    financial: {
-      institution: {
-        account: 'Conta corrente',
-        agency: 'Agência',
-        code: 'Banco',
-      },
-      institutions: 'Instituições financeiras',
-    },
-    funeral: {
-      assistance: 'Assistência funeral',
-    },
-    graphics: 'Gráficos',
-    hospitalization: 'Hospitalização',
-    injection: 'Investimento',
-    installment: {
-      value: 'Valor da parcela mensal',
-    },
-    insurance: 'Seguro',
-    items: {
-      none: 'Nenhum item',
-      plural: 'itens',
-      singular: 'item',
-    },
-    menu: {
-      label: {
-        classroom: 'Sala de aula',
-        expenses: 'Controle de gastos',
-        income: 'Controle de renda',
-        investments: 'Controle de investimentos',
-      },
-    },
-    mode: 'Modo',
-    payment: 'Pagamento',
-    performance: 'Desempenho',
-    profile: 'Perfil',
-    profits: 'Rendimento',
-    project: {
-      name: 'Controle Financeiro',
-    },
-    operator: 'Operador',
-    risk: 'Risco',
-    share: {
-      number: 'Quantidade',
-    },
-    sign: {
-      brl: 'R$',
-      percentage: '%',
-    },
-    statement: 'Demonstração de gastos',
-    summary: {
-      cdi: 'Distribuição de ativos em CDI',
-      cryptocurrencies: 'Distribuição de criptomoedas',
-      expenses: {
-        category: 'Distribuição de despesas por categorias',
-        fi: 'Distribuição de despesas por instituições financeiras',
-        type: 'Distribuição de despesas por tipos de pagamento',
-        method: 'Distribuição de despesas por métodos de pagamento',
-      },
-      fixed: {
-        rate: 'Distribuição de ativos prefixados',
-      },
-      foreign: {
-        exchange: 'Distribuição de ativos cambiais',
-      },
-      income: {
-        fixed: 'Distribuição de ativos em renda fixa',
-        variable: 'Distribuição de ativos em renda variável',
-      },
-      insurance: 'Composição do seguro',
-      international: 'Distribuição de ativos internacionais',
-      monthly: {
-        expenses: 'Resumo de despesas mensais',
-      },
-      multi: {
-        asset: 'Distribuição de ativos em multimercado',
-      },
-      payment: {
-        method: 'Distribuição de gastos por meio de pagamentos',
-      },
-      pension: 'Distribuição de ativos em previdência privada',
-      private: {
-        credit: 'Distribuição de ativos em crédito privado',
-      },
-      protective: 'Distribuição de ativos em proteção',
-      real: {
-        interest: 'Distribuição de ativos em juro real',
-      },
-      reserve: {
-        share: 'Composição de reserva financeira',
-      },
-      stocks: 'Distribuição de ativos em ações brasileiras',
-    },
-    tag: 'Marcador',
-    value: 'Valor',
-  },
-
+  // FIs -----------------------------------------------------------------------
   fis: [
     {
       name: 'Bradesco',
@@ -441,6 +513,7 @@ export const messages = {
     },
   ],
 
+  // ASSETS --------------------------------------------------------------------
   assets: {
     cdi: {
       cdb: 'CDB (Certificados de Depósito Bancário) com liquidez diária',
