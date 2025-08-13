@@ -3,7 +3,7 @@
     Description: Arquivo de funções utilitárias
 ============================================================================= */
 
-// import { messages as message } from './messages.js';
+import { messages as message } from './messages.js';
 // import * as info from './variables.js';
 import * as component from './components.js';
 // import * as graphic from './graphics.js';
@@ -165,6 +165,34 @@ export let modelData = {
 // INCOME ----------------------------------------------------------------------
 
 // EXPENSES --------------------------------------------------------------------
+export let modelSchedule = (schedule, expenses) => {
+  const date = new Date();
+  const today = date.getDate();
+  const status = {
+    toBePaid: { label: message.schedule.status.toBePaid, style: 'neutral' },
+    paidBill: { label: message.schedule.status.paidBill, style: 'positive' },
+    overdue: { label: message.schedule.status.overdue, style: 'negative' },
+    dueToday: { label: message.schedule.status.dueToday, style: 'info' },
+  };
+
+  let expensesTags = expenses.map((obj) => obj.tag);
+  let tasks = schedule.map((obj) => {
+    let taskStatus = status;
+    if (expensesTags.includes(obj.label)) {
+      taskStatus = status.paidBill;
+    } else {
+      if (obj.day === today) taskStatus = status.dueToday;
+      if (obj.day > today) taskStatus = status.toBePaid;
+      if (obj.day < today) taskStatus = status.overdue;
+    }
+    return {
+      day: obj.day,
+      label: obj.label,
+      status: taskStatus,
+    };
+  });
+  return tasks;
+};
 
 // INVESTMENTS -----------------------------------------------------------------
 export const indexes = {

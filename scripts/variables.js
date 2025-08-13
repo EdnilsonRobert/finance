@@ -25,6 +25,7 @@ import { messages as message } from './messages.js';
 import { income as dataIncome } from './fake-income.js';
 import { transactions as dataTransactions } from './fake-investments.js';
 import { expenses as dataExpenses } from './fake-expenses.js';
+import { schedule as dataSchedule } from './fake-expenses.js';
 // import * as info from './variables.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
@@ -186,7 +187,35 @@ export const lifeInsuranceComposition = lifeInsurance.composition.map(
 
 // CLASSROOM -------------------------------------------------------------------
 
-// COMPONENT: BARCHART DATA [BCD_] ---------------------------------------------
+// COMPONENT: CALENDAR [SCD_] --------------------------------------------------
+export const schedule = dataSchedule;
+
+export const scd_schedule = utils.modelSchedule(schedule, expenses);
+
+// COMPONENT: TABLE DATA [TBD_] ------------------------------------------------
+export const tbd_headerExpenses = [
+  message.global.date,
+  message.global.description,
+  message.global.category,
+  message.global.tag,
+  message.global.method,
+  message.global.payment,
+  message.global.bank,
+  `${message.global.value} (${message.global.sign.brl})`,
+];
+
+export const tbd_headerInvestments = [
+  message.global.asset,
+  message.global.operator,
+  message.global.profile,
+  message.global.risk,
+  message.global.share.number,
+  `${message.global.injection} (${message.global.sign.brl})`,
+  `${message.global.profits} (${message.global.sign.brl})`,
+  `${message.global.performance} (${message.global.sign.percentage})`,
+];
+
+// GRAPHIC: BARCHART DATA [BCD_] ---------------------------------------------
 export const bcd_companyExpenses = [
   {
     value: utils.sum.expensesAmount(companyAccounting),
@@ -282,29 +311,6 @@ export const bcd_lifeInsurance = lifeInsurance.composition.map((obj, index) => {
     color: utils.colors[index],
   };
 });
-
-// COMPONENT: TABLE DATA [TBD_] ------------------------------------------------
-export const tbd_headerExpenses = [
-  message.global.date,
-  message.global.description,
-  message.global.category,
-  message.global.tag,
-  message.global.method,
-  message.global.payment,
-  message.global.bank,
-  `${message.global.value} (${message.global.sign.brl})`,
-];
-
-export const tbd_headerInvestments = [
-  message.global.asset,
-  message.global.operator,
-  message.global.profile,
-  message.global.risk,
-  message.global.share.number,
-  `${message.global.injection} (${message.global.sign.brl})`,
-  `${message.global.profits} (${message.global.sign.brl})`,
-  `${message.global.performance} (${message.global.sign.percentage})`,
-];
 
 // GRAPHIC: GRAPHIC BARS DATA [GBD_] -------------------------------------------
 export const gbd_habitation = getter.getExpenses.byKey(

@@ -1,0 +1,73 @@
+/** ============================================================================
+    Group: Components
+    File: Calendar
+============================================================================= */
+
+@use './containers';
+
+.schedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+
+  .overline::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.calendar-grid {
+  @extend %container-styled;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--corner-sm);
+  border: .2rem solid transparent;
+  background-color: var(--ui-color-6);
+  text-align: center;
+  cursor: default;
+}
+
+.calendar-day-label {
+  display: block;
+  line-height: var(--line-height-lg);
+}
+
+.is-today { border-color: var(--spring-4); }
+.is-highlighted { background-color: var(--ui-color-5); }
+
+.tasks {
+  @extend %container-styled;
+  max-height: 25.4rem;
+  margin-top: var(--space-sm);
+  overflow-y: scroll;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--corner-sm);
+  background-color: var(--ui-color-6);
+}
+
+.task-item + .task-item { margin-top: var(--space-sm); }
+
+.task-item-date {
+  width: 2em;
+  text-align: center;
+}
+
+.task-item-label {
+  flex-grow: 1;
+}
+
+/* END OF FILE ============================================================== */

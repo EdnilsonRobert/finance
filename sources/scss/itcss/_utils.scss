@@ -26,8 +26,10 @@
 .pink { background-color: var(--pink-4); }
 .brown { background-color: var(--brown-4); }
 
+.text-info { color: var(--blue-3); }
 .text-faded { color: var(--ui-color-3); }
 .text-negative { color: var(--red-3); }
+.text-neutral { color: var(--ui-color-3); }
 .text-positive { color: var(--spring-3); }
 .text-warning { color: var(--gold-3); }
 
@@ -41,5 +43,15 @@
 .text-magenta { color: var(--magenta-3); }
 .text-pink { color: var(--pink-3); }
 .text-brown { color: var(--brown-3); }
+
+.badge {
+  padding: 0 var(--space-sm);
+  border-radius: var(--corner-sm);
+}
+
+.badge-info { background-color: var(--blue-7); }
+.badge-negative { background-color: var(--red-7); }
+.badge-neutral { background-color: var(--ui-color-7); }
+.badge-positive { background-color: var(--spring-7); }
 
 /* END OF FILE ============================================================== */

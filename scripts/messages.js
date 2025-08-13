@@ -12,6 +12,7 @@
 //   classroom {},
 //   fis {},
 //   assets {},
+//   schedule {},
 // };
 
 export const messages = {
@@ -51,6 +52,7 @@ export const messages = {
     asset: 'Ativo',
     balance: 'Saldo',
     bank: 'Banco',
+    calendar: 'Calendário de pagamentos',
     category: 'Categoria',
     company: {
       accounting: 'Contabilidade',
@@ -74,10 +76,10 @@ export const messages = {
           abbr: 'CSLL',
           desc: 'CSLL [Contribuição Social sobre Lucro Líquido]',
         },
-        das: {
-          abbr: 'DAS',
-          desc: 'DAS [Documento de Arrecadação Fiscal do Simples Nacional]',
-        },
+        // das: {
+        //   abbr: 'DAS',
+        //   desc: 'DAS [Documento de Arrecadação Fiscal do Simples Nacional]',
+        // },
         gps: {
           abbr: 'GPS',
           desc: 'GPS (INSS e IRRF) [Guia de Previdência Social]',
@@ -94,6 +96,10 @@ export const messages = {
           abbr: 'PIS',
           desc: 'PIS [Programa de Integração Social]',
         },
+        // tfe: {
+        //   abbr: 'TFE',
+        //   desc: 'TFE [Taxa de Fiscalização de Estabelecimento]',
+        // },
       },
       taxes: 'Taxas e impostos',
     },
@@ -213,6 +219,7 @@ export const messages = {
       stocks: 'Distribuição de ativos em ações brasileiras',
     },
     tag: 'Marcador',
+    tasks: 'Tarefas',
     value: 'Valor',
   },
 
@@ -590,6 +597,16 @@ export const messages = {
       },
     },
     stocks: 'Ações brasileiras na B3 - B3 [b3sa3]',
+  },
+
+  // SCHEDULE ------------------------------------------------------------------
+  schedule: {
+    status: {
+      toBePaid: 'A pagar',
+      paidBill: 'Pago',
+      overdue: 'Em atraso',
+      dueToday: 'Vence hoje',
+    },
   },
 };
 

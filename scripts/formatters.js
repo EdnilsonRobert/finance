@@ -29,6 +29,7 @@ export let format = {
       .trim();
   },
   moneyBRL: (value) => `${message.global.sign.brl} ${format.money(value)}`,
+  paddingZero: (n) => (n < 10 ? `0${n}` : n),
 };
 
 /* END OF FILE ============================================================== */

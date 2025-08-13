@@ -7,7 +7,7 @@ import { messages as message } from './messages.js';
 import * as info from './variables.js';
 // import * as component from './components.js';
 // import * as graphic from './graphics.js';
-// import * as formatter from './formatters.js';
+import * as formatter from './formatters.js';
 import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
@@ -154,6 +154,54 @@ export let svg = {
 };
 
 // COMPONENTES -----------------------------------------------------------------
+export let calendar = (data) => {
+  const date = new Date();
+  const today = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const dateCurrent = new Date(year, month);
+  let dateFormatted = Intl.DateTimeFormat('pt-BR', {
+    year: 'numeric',
+    month: 'long',
+  }).format(dateCurrent);
+
+  let scheduleContainer = create.container('div', 'schedule');
+  let calendarContainer = create.module(dateFormatted);
+  let tasksContainer = create.module(message.global.tasks);
+  scheduleContainer.append(calendarContainer, tasksContainer);
+
+  let calendarGrid = create.container('div', 'calendar-grid');
+  calendarContainer.append(calendarGrid);
+  let dates = data.map((obj) => obj.day);
+  for (let i = 1; i <= 31; i++) {
+    let gridCell = create.container('p', 'calendar-day');
+    if (i === today) gridCell.classList.add('is-today');
+    if (dates.includes(i)) gridCell.classList.add('is-highlighted');
+    gridCell.append(
+      place.text('span', formatter.format.paddingZero(i), 'calendar-day-label')
+    );
+    calendarGrid.append(gridCell);
+  }
+
+  let taskList = create.container('div', 'tasks');
+  tasksContainer.append(taskList);
+  data.forEach((obj) => {
+    let task = create.container('p', 'task-item');
+    task.append(
+      place.text('span', obj.day, `task-item-date text-${obj.status.style}`),
+      place.text(
+        obj.status.label === message.schedule.status.paidBill ? 's' : 'span',
+        obj.label,
+        `task-item-label text-${obj.status.style}`
+      ),
+      place.text('span', obj.status.label, `badge badge-${obj.status.style}`)
+    );
+    taskList.append(task);
+  });
+
+  return scheduleContainer;
+};
+
 export let card = (span, title, sign = null, value, footer, color) => {
   let card = create.container('div', `card col-${span}`);
   let cardHeader = create.container('div', 'card-header');

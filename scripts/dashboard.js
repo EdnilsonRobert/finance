@@ -11,7 +11,7 @@ import * as info from './variables.js';
 import * as component from './components.js';
 import * as graphic from './graphics.js';
 // import * as formatter from './formatters.js';
-import * as utils from './utils.js';
+// import * as utils from './utils.js';
 // import * as getter from './getters.js';
 
 // TOOLBAR ---------------------------------------------------------------------

@@ -90,6 +90,14 @@ containerExpenses.append(
 );
 // TODO: [graphic]: adicionar graphic line (receitas, gastos e investimentos)
 
+// PAYMENTS CALENDAR -----------------------------------------------------------
+let sectionCalendar = component.create.section(
+  message.global.calendar,
+  'calendar-number'
+);
+containerExpenses.append(sectionCalendar);
+sectionCalendar.append(component.calendar(info.scd_schedule));
+
 // GRAPHICS --------------------------------------------------------------------
 let containerGraphics = document.querySelector('.js-container-graphics');
 containerGraphics.append(

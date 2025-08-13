@@ -46,6 +46,14 @@ const costs = {
 };
 // TODO: [model/data] remodelar dados para exibir histórico mensal
 
+export const schedule = [
+  { day: 10, label: message.payments.tag.habitation.rent },
+  { day: 10, label: message.payments.tag.habitation.condominium },
+  { day: 12, label: 'cartão de cŕedito' },
+  { day: 13, label: 'Taxa ISS' },
+  { day: 30, label: 'Mensalidade Conube' },
+];
+
 export const expenses = [
   {
     date: '01/01',

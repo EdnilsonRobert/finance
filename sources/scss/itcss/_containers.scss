@@ -24,7 +24,7 @@
 }
 
 // CONTAINERS --------------------------
-.container+.container {
+.container + .container {
   margin-top: var(--space-md);
 }
 
